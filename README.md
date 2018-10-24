@@ -1,4 +1,4 @@
-# debbie
+# debbie-site
 A website I made for Debbie
 
 ## Available Scripts
