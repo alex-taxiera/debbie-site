@@ -101,3 +101,15 @@
     width: 95%;
   }
 }
+
+@media (max-width: 500px) {
+  .body {
+    width: 99%;
+  }
+  .menu {
+    width: 100%;
+  }
+  .menu-option {
+    font-size: 1em;
+  }
+}
