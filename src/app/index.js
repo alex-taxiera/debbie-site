@@ -42,10 +42,11 @@ class App extends Component {
       <div>
         {menuOptions.map((option) => {
           return (
-            <div className={'menu-option' + (selectedMenuOption === option ? ' selected' : '')}>
-              <button className="btn-plain" onClick={() => this.changeMenuOption(option)}>
-                {option}
-              </button>
+            <div
+              className={'menu-option' + (selectedMenuOption === option ? ' selected' : '')}
+              onClick={() => this.changeMenuOption(option)}
+            >
+              {option}
             </div>
           )
         })}
