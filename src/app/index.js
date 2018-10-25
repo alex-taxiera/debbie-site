@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
 
 class App extends Component {
@@ -6,8 +7,16 @@ class App extends Component {
     selectedMenuOption: 'home'
   }
 
+  bringToTop () {
+    const body = ReactDOM.findDOMNode(this.refs.body)
+    if (window.pageYOffset > 120) {
+      body.scrollIntoView()
+    }
+  }
+
   changeMenuOption (option) {
     this.setState({ selectedMenuOption: option })
+    this.bringToTop()
   }
 
   renderPage () {
@@ -50,7 +59,7 @@ class App extends Component {
         <div className="title" onClick={() => this.changeMenuOption('home')}>
           Debbie Chen
         </div>
-        <div className="body">
+        <div className="body" ref="body">
           <div className="menu">
             {this.renderMenu()}
           </div>
