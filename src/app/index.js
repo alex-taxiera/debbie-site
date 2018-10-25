@@ -1,10 +1,33 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import propTypes from 'prop-types'
+
+import './index.css'
+
+import Menu from './components/menu'
 
 class App extends Component {
   state = {
-    selectedMenuOption: 'home'
+    currentPage: 'home'
+  }
+
+  static propTypes = {
+    title: propTypes.string.isRequired,
+    pages: propTypes.arrayOf(propTypes.string)
+  }
+
+  static defaultProps = {
+    pages: [
+      'home',
+      'about',
+      'resume',
+      'sample'
+    ]
+  }
+
+  componentWillMount () {
+    const { pages } = this.props
+    this.setState({ currentPage: pages[0] })
   }
 
   bringToTop () {
@@ -14,14 +37,14 @@ class App extends Component {
     }
   }
 
-  changeMenuOption (option) {
-    this.setState({ selectedMenuOption: option })
+  onMenuChange (page) {
+    this.setState({ currentPage: page })
     this.bringToTop()
   }
 
-  renderPage () {
-    const { selectedMenuOption } = this.state
-    switch (selectedMenuOption) {
+  renderContent () {
+    const { currentPage } = this.state
+    switch (currentPage) {
       case 'home': return 'home'
       default: return `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget convallis est. Aenean gravida massa vitae velit gravida, eu suscipit sem egestas. Maecenas aliquam ante ac auctor sagittis. Nunc luctus, arcu ut tincidunt facilisis, enim ante viverra magna, a finibus velit diam et dolor. Proin dolor odio, ullamcorper eget pretium a, placerat ut lorem. Aenean pulvinar enim nec est rhoncus dictum. Nam eu orci eget quam tempus vehicula ac in nibh. Vestibulum varius cursus nulla. Nulla vestibulum nulla aliquet, vulputate turpis nec, maximus purus. Aliquam viverra maximus lorem sed varius. Donec ultrices justo magna, cursus ornare tortor commodo at. In fermentum bibendum libero, eu blandit turpis. Suspendisse quis justo laoreet, aliquam nunc ac, sagittis leo. In non urna hendrerit, mattis orci ac, scelerisque urna. In hendrerit sem ex, ac semper magna dapibus vitae. Curabitur non viverra purus.
 
@@ -35,41 +58,24 @@ class App extends Component {
     }
   }
 
-  renderMenu () {
-    const menuOptions = ['home', 'about', 'resume', 'sample']
-    const { selectedMenuOption } = this.state
+  render () {
+    const { title, pages } = this.props
     return (
-      <div>
-        {menuOptions.map((option) => {
-          return (
-            <div
-              className={'menu-option' + (selectedMenuOption === option ? ' selected' : '')}
-              onClick={() => this.changeMenuOption(option)}
-            >
-              {option}
-            </div>
-          )
-        })}
-      </div>
-    )
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <div className="title" onClick={() => this.changeMenuOption('home')}>
-          Debbie Chen
+      <div className='container'>
+        <div className='title'>
+          {title}
         </div>
-        <div className="body" ref="body">
-          <div className="menu">
-            {this.renderMenu()}
-          </div>
-          <div className="page-container">
-            {this.renderPage()}
+        <div className='body' ref='body'>
+          <Menu
+            options={pages}
+            onChange={(page) => this.onMenuChange(page)}
+          />
+          <div className='content'>
+            {this.renderContent()}
           </div>
         </div>
-        <div className="footer">
-          <a href="mailto:debbiechen@umass.edu">contact me</a>
+        <div className='footer'>
+          <a href='mailto:debbiechen@umass.edu'>contact me</a>
         </div>
       </div>
     )
