@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 
-import './index.css'
-
 class Menu extends Component {
   state = {
     selected: ''
   }
 
   static propTypes = {
-    options: propTypes.arrayOf(propTypes.string).isRequired,
+    options: propTypes.arrayOf(propTypes.shape({
+      key: propTypes.string.isRequired,
+      value: propTypes.string.isRequired
+    })).isRequired,
     onChange: propTypes.func,
     value: propTypes.string
   }
@@ -21,30 +22,30 @@ class Menu extends Component {
 
   componentWillMount () {
     const { options } = this.props
-    this.setState({ selected: options[0] })
+    this.setState({ selected: options[0].key })
   }
 
-  isSelected (option) {
+  isSelected (key) {
     const { selected } = this.state
     const { value } = this.props
-    return (value ? value === option : selected === option)
+    return (value ? value === key : selected === key)
   }
 
   render () {
     const { options, onChange } = this.props
     return (
       <div className='menu'>
-        {options.map((option, index) => {
+        {options.map(({ key, value }) => {
           return (
             <div
-              key={index}
-              className={'option' + (this.isSelected(option) ? ' selected' : '')}
+              key={key}
+              className={'option' + (this.isSelected(key) ? ' selected' : '')}
               onClick={() => {
-                this.setState({ selected: option })
-                onChange && onChange(option)
+                this.setState({ selected: key })
+                onChange && onChange(key)
               }}
             >
-              {option}
+              {value}
             </div>
           )
         })}
