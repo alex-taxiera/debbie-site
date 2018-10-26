@@ -49,9 +49,51 @@
   color: #84240C;
 }
 
+/* MENU COMPONENT */
+
+.menu {
+  width: 60%;
+  margin: 0 auto 2em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #666;
+}
+
+.menu .option {
+  color: #666;
+  font-size: 1.1em;
+  text-align: center;
+  width: 20%;
+  margin: 0 2.5%;
+  padding: 0 0 3px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.menu .option:hover,
+.menu .option:active {
+  color: #000;
+}
+
+.menu .option.selected {
+  color: #F0F0F0;
+  background-color: #563232;
+  border-radius: 100px;
+}
+
+.menu .option.selected:hover,
+.menu .option.selected:active {
+  color: #FFF;
+}
+
+/* END MENU COMPONENT */
+
 @media (max-width: 1224px) {
   .content {
     width: 90%;
+  }
+  /* MENU COMPONENT */
+  .menu {
+    width: 80%;
   }
 }
 
@@ -69,6 +111,32 @@
   .footer {
     margin: 0.3em 0;
     font-size: 1.2em;
+  }
+  /* MENU COMPONENT */
+  .menu {
+    width: 100%;
+    background-color: #FFF;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding: 0;
+    line-height: 2em;
+    border-radius: 3px 3px 0 0;
+    margin: 0 0 1em;
+  }
+  .menu .option {
+    font-size: 1em;
+    width: 25%;
+    margin: 0;
+  }
+  .menu .option.selected {
+    border-radius: 0;
+  }
+  .menu .option.selected:first-child {
+    border-top-left-radius: 3px;
+  }
+  .menu .option.selected:last-child {
+    border-top-right-radius: 3px;
   }
 }
 
