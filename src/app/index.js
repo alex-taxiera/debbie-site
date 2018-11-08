@@ -81,7 +81,7 @@ class App extends Component {
             onRequestClose={() => this.setState({ contactFormIsOpen: false })}
             className='modal'
           >
-            <div className='white box padded'>
+            <div className='white box padded' style={{ maxWidth: 500, margin: 'auto' }}>
               <div
                 className='close-form-x'
                 onClick={() => this.setState({ contactFormIsOpen: false })}

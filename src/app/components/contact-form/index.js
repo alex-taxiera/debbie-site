@@ -109,11 +109,13 @@ class ContactForm extends Component {
       fieldErrors
     } = this.state
 
+    const submitEnabled = captcha && !fieldErrors && !sent
+
     return (
       <div className='contact-form'>
         <div className='title'>{title}</div>
         <PopUpModal className='idk-why-this-works' isOpen={isLoading || !captchaLoaded}>
-          <Spinner color='#21CABA' />
+          <Spinner color={accent} />
         </PopUpModal>
         <div className='form'>
           <StyledInput
@@ -143,12 +145,12 @@ class ContactForm extends Component {
               verifyCallback={(token) => this.setState({ captcha: token })}
             />
           </div>
-          <button
-            disabled={!captcha || fieldErrors || sent}
-            onClick={this.handleSubmit}
+          <div
+            className={'submit-btn padded box' + (!submitEnabled ? ' disabled' : '')}
+            onClick={(submitEnabled ? this.handleSubmit : () => {})}
           >
             send
-          </button>
+          </div>
         </div>
         {error}
       </div>

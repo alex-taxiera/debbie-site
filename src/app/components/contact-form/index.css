@@ -6,3 +6,28 @@
   width: 304px;
   margin: auto;
 }
+
+.padded.box {
+  padding: 18px;
+}
+
+.white.box {
+  background-color: white;
+}
+
+.box {
+  background: inherit;
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
+}
+
+.submit-btn {
+  width: 33%;
+  margin: 1.2rem auto 0;
+  cursor: pointer;
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
