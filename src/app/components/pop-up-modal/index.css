@@ -1,0 +1,22 @@
+.ReactModal__Content {
+  cursor: default;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  cursor: pointer;
+  background: transparent;
+  transition: background 180ms ease-out;
+  z-index: 10;
+}
+
+.ReactModal__Overlay--after-open {
+  background: rgba(248, 248, 248, 0.6);
+}
+
+.ReactModal__Overlay--before-close {
+  background: transparent;
+}
