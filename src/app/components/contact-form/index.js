@@ -8,8 +8,13 @@ import StyledInput from './components/styled-input'
 import './index.css'
 import PopUpModal from '../pop-up-modal'
 
+console.log('process', process.env)
+
 const IN_PRODUCTION = process.env.NODE_ENV === 'production'
+console.log('in prod', IN_PRODUCTION)
 const CAPTCHA_KEY = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'CAPTCHA_KEY']
+console.log('attempt at key', process.env.CAPTCHA_KEY)
+console.log('actual key', CAPTCHA_KEY)
 
 class ContactForm extends Component {
   static propTypes = {
