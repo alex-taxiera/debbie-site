@@ -6,11 +6,12 @@ const IN_PRODUCTION = process.env.NODE_ENV === 'production'
 
 const MAILGUN_KEY = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'MAILGUN_KEY']
 const MAILGUN_DOMAIN = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'MAILGUN_DOMAIN']
-const MAILGUN_SENDER = `noreply@${MAILGUN_DOMAIN}`
+const MAILGUN_SENDER = `noreply@${MAILGUN_DOMAIN.startsWith('mg.') ? MAILGUN_DOMAIN.slice(3) : MAILGUN_DOMAIN}`
 
 const mailgun = mailgunClient({ username: 'api', key: MAILGUN_KEY })
 const mailgunBase = {
-  from: MAILGUN_SENDER
+  from: MAILGUN_SENDER,
+  subject: 'Mailgun Email'
 }
 
 const app = express()
