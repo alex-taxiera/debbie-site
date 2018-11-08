@@ -19,7 +19,7 @@
   "scripts": {
     "start": "run-p app server",
     "app": "serve -s build",
-    "server": "node-env-run server",
+    "server": "node server",
     "dev": "run-p dev-app dev-server",
     "dev-app": "react-scripts start",
     "dev-server": "node-env-run server --exec nodemon",
