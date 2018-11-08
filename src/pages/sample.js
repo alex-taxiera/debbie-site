@@ -3,9 +3,6 @@ import React from 'react'
 export default function render () {
   return (
     <div>
-      <div className='float-left text-right'>
-        <img height='240px' width='240px' src='/profile.jpg' alt='profile.jpg' />
-      </div>
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget pretium felis, mollis consequat dui. Nam convallis ex eros. Cras scelerisque sem ante, quis pharetra mi auctor a. Donec varius accumsan ante, ac luctus ligula ornare efficitur. Aliquam vulputate, orci pellentesque consectetur pulvinar, diam ex volutpat ipsum, ac elementum tortor erat vitae libero. Quisque libero ex, tempor ac arcu ac, molestie tincidunt enim. Donec vel vehicula arcu, dapibus aliquam purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam sagittis magna eu ex porta pretium. Suspendisse potenti. Sed ullamcorper vel felis ullamcorper fermentum. Aliquam metus tellus, cursus id tortor et, condimentum pellentesque diam. Praesent at consectetur elit. Mauris quis urna cursus, feugiat sem vitae, rhoncus nulla.
 
