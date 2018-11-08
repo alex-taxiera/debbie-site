@@ -49,9 +49,3 @@ textarea {
   -webkit-transition: all 0.125s ease;
   transition: all 0.125s ease;
 }
-
-.focused {
-  width: 100%;
-  -webkit-transition: all 0.075s ease;
-  transition: all 0.075s ease;
-}

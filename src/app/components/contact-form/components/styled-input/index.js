@@ -118,8 +118,17 @@ class StyledInput extends Component {
             )
           }
           <span
-            className={'line' + (focused ? ' focused' : null)}
-            style={error ? { background: errorColor } : { background: accent }}
+            className='line'
+            style={{
+              ...(focused
+                ? {
+                  width: '100%',
+                  WebkitTransition: 'all 0.075s ease',
+                  transition: 'all 0.075s ease'
+                } : {}
+              ),
+              ...(error ? { background: errorColor } : { background: accent })
+            }}
           />
           <label
             style={{
