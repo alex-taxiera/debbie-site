@@ -37,6 +37,9 @@ textarea:focus {
 
 textarea {
   resize: vertical;
+  overflow-y: scroll;
+  min-height: 20px;
+  height: 80px;
 }
 
 .line {
@@ -48,4 +51,8 @@ textarea {
   left: 0;
   -webkit-transition: all 0.125s ease;
   transition: all 0.125s ease;
+}
+
+::-webkit-resizer {
+  display: none;
 }
