@@ -4,57 +4,89 @@ import propTypes from 'prop-types'
 
 import { fourPages } from './shapes'
 import Menu from './components/menu'
+import PopUpModal from './components/pop-up-modal'
+import ContactForm from './components/contact-form'
 
 import './index.css'
 
 class App extends Component {
   state = {
-    currentPage: {}
+    currentPage: {},
+    contactFormIsOpen: false
   }
 
   static propTypes = {
     title: propTypes.string.isRequired,
+    contact: propTypes.string,
     pages: fourPages
   }
 
-  componentWillMount () {
+  componentWillMount = () => {
     const { pages } = this.props
     console.log(pages)
     this.setState({ currentPage: pages.page1 })
   }
 
-  bringToTop () {
+  bringToTop = () => {
     const body = ReactDOM.findDOMNode(this.refs.body)
     if (window.pageYOffset > 120) {
       body.scrollIntoView()
     }
   }
 
-  onMenuChange (pageKey) {
+  onMenuChange = (pageKey) => {
     const { pages } = this.props
     this.setState({ currentPage: pages[pageKey] })
     this.bringToTop()
   }
 
-  render () {
-    const { currentPage } = this.state
-    const { title, pages } = this.props
+  render = () => {
+    const { currentPage, contactFormIsOpen } = this.state
+    const { title, pages, contact } = this.props
     return (
       <div className='container'>
-        <div className='title'>
-          {title}
+        <div className='header'>
+          <div id='banner'>
+            <div className='title white box'>
+              {title}
+            </div>
+          </div>
         </div>
-        <div className='body' ref='body'>
+        <div className='body box' ref='body'>
           <Menu
             options={Object.keys(pages).map((key) => ({ key, value: pages[key].name }))}
-            onChange={(pageKey) => this.onMenuChange(pageKey)}
+            onChange={this.onMenuChange}
           />
           <div className='content'>
             {currentPage.content}
           </div>
         </div>
         <div className='footer'>
-          <a href='mailto:debbiechen@umass.edu'>contact me</a>
+          <button
+            onClick={() => this.setState({ contactFormIsOpen: true })}
+          >
+            contact me
+          </button>
+          <PopUpModal
+            isOpen={contactFormIsOpen}
+            onRequestClose={() => this.setState({ contactFormIsOpen: false })}
+            className='modal'
+          >
+            <div className='white box padded'>
+              <div style={{ textAlign: 'right' }}>
+                <span
+                  className='close-form-x'
+                  onClick={() => this.setState({ contactFormIsOpen: false })}
+                >
+                  X
+                </span>
+              </div>
+              <ContactForm
+                title='Contact Me'
+                to='debbiechen@umass.edu'
+              />
+            </div>
+          </PopUpModal>
         </div>
       </div>
     )
