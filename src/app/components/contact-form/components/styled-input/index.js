@@ -46,7 +46,7 @@ class StyledInput extends Component {
     if (isValid && !isValid(value)) {
       state.error = errorMessage
     } else {
-      state.error = ''
+      state.error = null
     }
     onChange && onChange(state)
     this.setState(state)
@@ -102,6 +102,7 @@ class StyledInput extends Component {
                 required={isRequired}
                 onChange={this.onChange}
                 onFocus={this.onFocus}
+                onBlur={this.onBlur}
               />
             ) : (
               <input
@@ -123,11 +124,11 @@ class StyledInput extends Component {
           <label
             style={{
               color,
+              ...(focused ? { color: accent } : null),
               ...(value ? {
-                color: accent,
                 fontSize: '0.75em',
                 top: '-1.25rem',
-                left: '1em',
+                left: '1rem',
                 WebkitTransition: 'all 0.125s ease',
                 transition: 'all 0.125s ease'
               } : null),

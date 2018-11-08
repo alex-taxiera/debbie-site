@@ -84,18 +84,19 @@
   margin: 2em 0;
 }
 
-.footer a {
+.contact-btn {
   cursor: pointer;
   color: inherit;
   text-decoration: none;
 }
 
-.footer a:hover,
-.footer a:active {
+.contact-btn:hover,
+.contact-btn:active {
   color: #84240C;
 }
 
 .close-form-x {
+  float: right;
   color: inherit;
   display: block;
   margin-top: -15px;
@@ -173,7 +174,7 @@
   }
   .footer {
     margin: 0.3em 0;
-    font-size: 1.2em;
+    font-size: 1em;
   }
   .modal .children {
     width: 75%;
@@ -215,5 +216,12 @@
   }
   .modal .children {
     width: 99%;
+  }
+  .padded.box {
+    padding: 9px;
+  }
+  .close-form-x {
+    margin-top: -7.5px;
+    margin-right: -5px;
   }
 }

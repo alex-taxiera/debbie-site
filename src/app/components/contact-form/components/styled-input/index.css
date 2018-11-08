@@ -35,6 +35,10 @@ textarea:focus {
   outline: 0;
 }
 
+textarea {
+  resize: vertical;
+}
+
 .line {
   display: block;
   width: 0;

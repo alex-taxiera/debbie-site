@@ -6,70 +6,151 @@ import Spinner from '../spinner'
 import StyledInput from './components/styled-input'
 
 import './index.css'
+import PopUpModal from '../pop-up-modal'
+
+const IN_PRODUCTION = process.env.NODE_ENV === 'production'
+const CAPTCHA_KEY = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'CAPTCHA_KEY']
 
 class ContactForm extends Component {
+  static propTypes = {
+    title: propTypes.string,
+    to: propTypes.string.isRequired,
+    accent: propTypes.string,
+    color: propTypes.string,
+    errorColor: propTypes.string
+  }
+
   state = {
     isLoading: false,
+    captchaLoaded: false,
     error: null,
     captcha: null,
     sent: false,
-    email: '',
-    subject: '',
-    body: ''
+    fieldErrors: false,
+    data: {
+      email: {
+        value: '',
+        error: null
+      },
+      message: {
+        value: '',
+        error: null
+      }
+    }
   }
 
-  static propTypes = {
-    title: propTypes.string,
-    to: propTypes.string.isRequired
+  hasErrors = () => {
+    const {
+      data
+    } = this.state
+    return Object.values(data).some((state) => state.error)
   }
 
   handleSubmit = () => {
-    return null
-  }
-
-  render = () => {
     const {
-      title,
       to
     } = this.props
 
     const {
+      captcha,
+      fieldErrors,
+      sent,
+      data
+    } = this.state
+
+    this.setState({ isLoading: true })
+
+    if (!captcha || fieldErrors || sent) {
+      this.setState({ isLoading: false })
+    } else {
+      console.log(data.email.value)
+      fetch('/mailgun/contact', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          contacter: data.email.value,
+          to,
+          text: data.message.value
+        })
+      })
+        .then((res) => this.setState({ isLoading: false, sent: true }))
+        .catch((res) => this.setState({ isLoading: false, sent: true, error: res.error.message }))
+    }
+  }
+
+  handleChange = (field, state) => {
+    const {
+      data
+    } = this.state
+
+    const newState = { data: { ...data, [field]: state } }
+    this.setState({
+      ...newState,
+      fieldErrors: Object.values(newState.data).some((state) => state.error)
+    })
+  }
+
+  render = () => {
+    console.log(this.state)
+    const {
+      title,
+      accent,
+      errorColor
+    } = this.props
+
+    const {
       isLoading,
+      captchaLoaded,
       error,
       captcha,
       sent,
-      value
+      fieldErrors
     } = this.state
 
     return (
       <div className='contact-form'>
         <div className='title'>{title}</div>
-        {isLoading
-          ? (<Spinner color='#21CABA' />)
-          : (
-            <div className='form'>
-              <StyledInput
-                type='text'
-                label='name'
-                isValid={(value) => value === 'abc'}
-                errorMessage='must be "abc"'
-              />
-              <div className='captcha'>
-                <ReCaptcha
-                  sitekey='6LdWKnkUAAAAAEgpCXhzjRikK1luGxnZ8TyiUdpG'
-                  render='explicit'
-                  verifyCallback={(token) => this.setState({ captcha: token })}
-                />
-              </div>
-              <button
-                disabled={!captcha || sent}
-                onClick={this.handleSubmit}
-              >
-                send
-              </button>
-            </div>
-          )
-        }
+        <PopUpModal className='idk-why-this-works' isOpen={isLoading || !captchaLoaded}>
+          <Spinner color='#21CABA' />
+        </PopUpModal>
+        <div className='form'>
+          <StyledInput
+            label='email'
+            type='email'
+            // eslint-disable-next-line no-control-regex
+            isValid={(value) => /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(value)}
+            errorMessage='please enter a valid email'
+            errorColor={errorColor}
+            accent={accent}
+            isRequired
+            onChange={(state) => this.handleChange('email', state)}
+          />
+          <StyledInput
+            label='message'
+            type='textarea'
+            errorColor={errorColor}
+            accent={accent}
+            isRequired
+            onChange={(state) => this.handleChange('message', state)}
+          />
+          <div className='captcha'>
+            <ReCaptcha
+              sitekey={CAPTCHA_KEY}
+              render='explicit'
+              onloadCallback={() => this.setState({ captchaLoaded: true })}
+              verifyCallback={(token) => this.setState({ captcha: token })}
+            />
+          </div>
+          <button
+            disabled={!captcha || fieldErrors || sent}
+            onClick={this.handleSubmit}
+          >
+            send
+          </button>
+        </div>
         {error}
       </div>
     )

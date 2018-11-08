@@ -23,7 +23,6 @@ class App extends Component {
 
   componentWillMount = () => {
     const { pages } = this.props
-    console.log(pages)
     this.setState({ currentPage: pages.page1 })
   }
 
@@ -41,8 +40,17 @@ class App extends Component {
   }
 
   render = () => {
-    const { currentPage, contactFormIsOpen } = this.state
-    const { title, pages, contact } = this.props
+    const {
+      currentPage,
+      contactFormIsOpen
+    } = this.state
+
+    const {
+      title,
+      pages,
+      contact
+    } = this.props
+
     return (
       <div className='container'>
         <div className='header'>
@@ -62,28 +70,29 @@ class App extends Component {
           </div>
         </div>
         <div className='footer'>
-          <button
+          <div
+            className='contact-btn'
             onClick={() => this.setState({ contactFormIsOpen: true })}
           >
             contact me
-          </button>
+          </div>
           <PopUpModal
             isOpen={contactFormIsOpen}
             onRequestClose={() => this.setState({ contactFormIsOpen: false })}
             className='modal'
           >
             <div className='white box padded'>
-              <div style={{ textAlign: 'right' }}>
-                <span
-                  className='close-form-x'
-                  onClick={() => this.setState({ contactFormIsOpen: false })}
-                >
-                  X
-                </span>
+              <div
+                className='close-form-x'
+                onClick={() => this.setState({ contactFormIsOpen: false })}
+              >
+                X
               </div>
               <ContactForm
                 title='Contact Me'
-                to='debbiechen@umass.edu'
+                to={contact}
+                accent='#874E4C'
+                errorColor='blue'
               />
             </div>
           </PopUpModal>

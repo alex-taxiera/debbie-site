@@ -9,8 +9,8 @@ class PopUpModal extends Component {
     isOpen: propTypes.bool,
     onRequestClose: propTypes.func,
     className: propTypes.string,
-    children: propTypes.oneOfType(propTypes.node, propTypes.arrayOf(propTypes.node)),
-    childrenWidth: propTypes.oneOfType(propTypes.number, propTypes.string)
+    children: propTypes.oneOfType([propTypes.node, propTypes.arrayOf(propTypes.node)]),
+    childrenWidth: propTypes.oneOfType([propTypes.number, propTypes.string])
   }
 
   static defaultProps = {
@@ -59,5 +59,7 @@ class PopUpModal extends Component {
     )
   }
 }
+
+Modal.setAppElement('body')
 
 export default PopUpModal
