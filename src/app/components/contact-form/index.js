@@ -43,6 +43,7 @@ class ContactForm extends Component {
     const {
       data
     } = this.state
+
     return Object.values(data).some((state) => state.error)
   }
 
@@ -63,7 +64,6 @@ class ContactForm extends Component {
     if (!captcha || fieldErrors || sent) {
       this.setState({ isLoading: false })
     } else {
-      console.log(data.email.value)
       fetch('/mailgun/contact', {
         method: 'post',
         headers: {
@@ -94,7 +94,6 @@ class ContactForm extends Component {
   }
 
   render = () => {
-    console.log(this.state)
     const {
       title,
       accent,
