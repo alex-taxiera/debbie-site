@@ -5,6 +5,8 @@
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-modal": "^3.6.1",
+    "react-recaptcha": "^2.3.10",
     "react-scripts": "2.0.5",
     "serve": "^10.0.2"
   },
