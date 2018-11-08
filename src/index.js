@@ -15,6 +15,7 @@ import './index.css'
 ReactDOM.render(
   <App
     title='Debbie Chen'
+    contact='debbiechen@umass.edu'
     pages={{
       page1: {
         name: 'home',
