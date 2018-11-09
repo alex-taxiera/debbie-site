@@ -1,11 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const mailgunClient = require('mailgun.js').client
 
-const IN_PRODUCTION = process.env.NODE_ENV === 'production'
+const {
+  MAILGUN_KEY,
+  MAILGUN_DOMAIN,
+  CAPTCHA_KEY
+} = process.env
 
-const MAILGUN_KEY = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'MAILGUN_KEY']
-const MAILGUN_DOMAIN = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'MAILGUN_DOMAIN']
 const MAILGUN_SENDER = `noreply@${MAILGUN_DOMAIN.startsWith('mg.') ? MAILGUN_DOMAIN.slice(3) : MAILGUN_DOMAIN}`
 
 const mailgun = mailgunClient({ username: 'api', key: MAILGUN_KEY })
@@ -16,36 +19,46 @@ const mailgunBase = {
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.post('/mailgun/contact', (req, res) => {
+app.get('/recaptcha', (req, res, next) => {
+  res.json({ sitekey: CAPTCHA_KEY })
+})
+
+app.post('/mailgun/contact', (req, res, next) => {
   const {
-    contacter,
+    from,
     to,
-    text,
-    html
+    text = '',
+    html = ''
   } = req.body
+
+  if (!from || !to) {
+    return res.status(422).json({ error: Error('missing address') })
+  }
 
   const email = {
     ...mailgunBase,
     to,
     subject: 'Contact Form',
-    text: `${contacter} says...\n` + (text || ''),
-    html: html || ''
+    text: `${from} says...\n` + text,
+    html
   }
+
   mailgun.messages.create(MAILGUN_DOMAIN, email)
     .then((msg) => {
       const success = {
         from: MAILGUN_SENDER,
-        to: contacter,
+        to: from,
         subject: 'Thanks For Contacting Debbie Chen',
         text: `We have recieved your message:\n${text}`
       }
       mailgun.messages.create(MAILGUN_DOMAIN, success)
         .then((msg) => res.json({ message: 'success' }))
     })
-    .catch((error) => res.json(500, { error: error.message }))
+    .catch((error) => console.log('error?', error) || res.status(500).json({ error: error.message }))
 })
 
 app.listen(3001, () =>

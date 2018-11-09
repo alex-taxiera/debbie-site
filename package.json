@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "mailgun.js": "^2.0.1",
     "node-env-run": "^3.0.2",
@@ -17,6 +18,7 @@
     "serve": "^10.0.2"
   },
   "scripts": {
+    "emulate": "run-p dev-server app",
     "start": "run-p app server",
     "app": "serve -s build",
     "server": "node server",
