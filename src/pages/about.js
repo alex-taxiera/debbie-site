@@ -4,7 +4,7 @@ export default function render () {
   return (
     <div>
       <div className='float-left text-right'>
-        <img height='240px' width='240px' src='/profile.jpg' alt='profile.jpg' />
+        <img height='auto' width='100%' style={{ maxWidth: 240 }} src='/profile.jpg' alt='profile.jpg' />
       </div>
       <p>
         Debbie Chen was born and raised in Brockton Massachusetts.  A passionate music educator and Bassoonist, she studies music at the University of Massachusetts Amherst where she is earning her Bachelor of Music in Music education and Bassoon performance. Her former teachers include Remy Taghavi, Stephen Walt and Janet Underhill. She will receive her teaching license in music grade Pre-k - 12 in February 2019.
