@@ -2,22 +2,16 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import ReCaptcha from 'react-recaptcha'
 
+import { sendContactEmails } from '../../api'
 import Spinner from '../spinner'
 import StyledInput from './components/styled-input'
 
 import './index.css'
 import PopUpModal from '../pop-up-modal'
 
-console.log('process', process.env)
-
-const IN_PRODUCTION = process.env.NODE_ENV === 'production'
-console.log('in prod', IN_PRODUCTION)
-const CAPTCHA_KEY = process.env[(!IN_PRODUCTION ? 'REACT_APP_' : '') + 'CAPTCHA_KEY']
-console.log('attempt at key', process.env.CAPTCHA_KEY)
-console.log('actual key', CAPTCHA_KEY)
-
 class ContactForm extends Component {
   static propTypes = {
+    captchaKey: propTypes.string.isRequired,
     title: propTypes.string,
     to: propTypes.string.isRequired,
     accent: propTypes.string,
@@ -27,12 +21,11 @@ class ContactForm extends Component {
 
   state = {
     isLoading: false,
-    captchaLoaded: false,
     error: null,
-    captcha: null,
-    sent: false,
+    captchaToken: null,
+    emailSent: false,
     fieldErrors: false,
-    data: {
+    fields: {
       email: {
         value: '',
         error: null
@@ -46,10 +39,10 @@ class ContactForm extends Component {
 
   hasErrors = () => {
     const {
-      data
+      fields
     } = this.state
 
-    return Object.values(data).some((state) => state.error)
+    return Object.values(fields).some((state) => state.error)
   }
 
   handleSubmit = () => {
@@ -58,48 +51,46 @@ class ContactForm extends Component {
     } = this.props
 
     const {
-      captcha,
+      captchaToken,
       fieldErrors,
-      sent,
-      data
+      emailSent,
+      fields
     } = this.state
 
-    this.setState({ isLoading: true })
+    const {
+      email,
+      message
+    } = fields
 
-    if (!captcha || fieldErrors || sent) {
-      this.setState({ isLoading: false })
-    } else {
-      fetch('/mailgun/contact', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          contacter: data.email.value,
-          to,
-          text: data.message.value
-        })
-      })
-        .then((res) => this.setState({ isLoading: false, sent: true }))
-        .catch((res) => this.setState({ isLoading: false, sent: true, error: res.error.message }))
+    const canSubmit = captchaToken && !fieldErrors && !emailSent
+
+    if (canSubmit) {
+      this.setState({ isLoading: true })
+
+      sendContactEmails({
+        from: email.value,
+        to,
+        text: message.value
+      }).then((res) => this.setState({ isLoading: false, emailSent: true, error: null }))
+        .catch((error) => this.setState({ isLoading: false, emailSent: true, error }))
     }
   }
 
   handleChange = (field, state) => {
     const {
-      data
+      fields
     } = this.state
 
-    const newState = { data: { ...data, [field]: state } }
+    const newState = { fields: { ...fields, [field]: state } }
     this.setState({
       ...newState,
-      fieldErrors: Object.values(newState.data).some((state) => state.error)
+      fieldErrors: Object.values(newState.fields).some((state) => state.error)
     })
   }
 
   render = () => {
     const {
+      captchaKey,
       title,
       accent,
       errorColor
@@ -107,19 +98,18 @@ class ContactForm extends Component {
 
     const {
       isLoading,
-      captchaLoaded,
       error,
-      captcha,
-      sent,
+      captchaToken,
+      emailSent,
       fieldErrors
     } = this.state
 
-    const submitEnabled = captcha && !fieldErrors && !sent
+    const canSubmit = captchaToken && !fieldErrors && !emailSent
 
     return (
       <div className='contact-form'>
         <div className='title'>{title}</div>
-        <PopUpModal className='idk-why-this-works' isOpen={isLoading || !captchaLoaded}>
+        <PopUpModal className='idk-why-this-works' isOpen={isLoading}>
           <Spinner color={accent} />
         </PopUpModal>
         <div className='form'>
@@ -143,21 +133,24 @@ class ContactForm extends Component {
             onChange={(state) => this.handleChange('message', state)}
           />
           <div className='captcha'>
-            <ReCaptcha
-              sitekey={CAPTCHA_KEY}
-              render='explicit'
-              onloadCallback={() => this.setState({ captchaLoaded: true })}
-              verifyCallback={(token) => this.setState({ captcha: token })}
-            />
+            {captchaKey
+              ? (
+                <ReCaptcha
+                  sitekey={captchaKey}
+                  render='explicit'
+                  verifyCallback={(captchaToken) => this.setState({ captchaToken })}
+                />
+              ) : (<div>there was an error with this form</div>)
+            }
           </div>
           <div
-            className={'submit-btn padded box' + (!submitEnabled ? ' disabled' : '')}
-            onClick={(submitEnabled ? this.handleSubmit : () => {})}
+            className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '')}
+            onClick={(canSubmit ? this.handleSubmit : () => {})}
           >
             send
           </div>
         </div>
-        {error}
+        {error ? error.message : null}
       </div>
     )
   }

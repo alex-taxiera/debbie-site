@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import propTypes from 'prop-types'
 
+import { getCaptchaKey } from './api'
 import { fourPages } from './shapes'
 import Menu from './components/menu'
 import PopUpModal from './components/pop-up-modal'
@@ -11,6 +12,8 @@ import './index.css'
 
 class App extends Component {
   state = {
+    error: null,
+    captchaKey: '',
     currentPage: {},
     contactFormIsOpen: false
   }
@@ -24,6 +27,9 @@ class App extends Component {
   componentWillMount = () => {
     const { pages } = this.props
     this.setState({ currentPage: pages.page1 })
+    getCaptchaKey()
+      .then((captchaKey) => this.setState({ captchaKey }))
+      .catch((error) => this.setState({ error }))
   }
 
   bringToTop = () => {
@@ -41,8 +47,10 @@ class App extends Component {
 
   render = () => {
     const {
+      error,
       currentPage,
-      contactFormIsOpen
+      contactFormIsOpen,
+      captchaKey
     } = this.state
 
     const {
@@ -50,6 +58,10 @@ class App extends Component {
       pages,
       contact
     } = this.props
+
+    if (error) {
+      console.error('here is an error', error)
+    }
 
     return (
       <div className='container'>
@@ -89,6 +101,7 @@ class App extends Component {
                 X
               </div>
               <ContactForm
+                captchaKey={captchaKey}
                 title='Contact Me'
                 to={contact}
                 accent='#874E4C'
