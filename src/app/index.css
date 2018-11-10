@@ -128,6 +128,8 @@
   padding: 0 0 3px;
   display: inline-block;
   cursor: pointer;
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
 }
 
 .menu .option:hover,

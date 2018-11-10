@@ -36,8 +36,8 @@ textarea:focus {
 }
 
 textarea {
-  resize: vertical;
-  overflow-y: scroll;
+  resize: none;
+  overflow: auto;
   min-height: 20px;
   height: 80px;
 }
