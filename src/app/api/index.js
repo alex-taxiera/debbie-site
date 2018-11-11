@@ -1,11 +1,10 @@
-const BASE_URL = 'http://localhost:3001'
 const HEADERS = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
 export async function getCaptchaKey () {
-  return fetch(BASE_URL + '/recaptcha', {
+  return fetch('/recaptcha', {
     headers: HEADERS
   }).then((res) => res.json())
     .then((res) => {
@@ -19,7 +18,7 @@ export async function getCaptchaKey () {
 }
 
 export async function sendContactEmails ({ to, from, text, html }) {
-  return fetch(BASE_URL + '/mailgun/contact', {
+  return fetch('/mailgun/contact', {
     method: 'post',
     headers: HEADERS,
     body: JSON.stringify({
