@@ -1,38 +1,50 @@
+const URL = 'https://aws-proxy.herokuapp.com/proxy'
+const MAILGUN_DOMAIN = 'mg.thedebbiechen.com'
+
 const HEADERS = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-export async function getCaptchaKey () {
-  return fetch('/recaptcha', {
-    headers: HEADERS
-  }).then((res) => res.json())
-    .then((res) => {
-      if (res.error) {
-        throw res.error
-      } else {
-        return res.sitekey
-      }
-    })
-    .catch(console.error)
+async function request (path, options = { headers: {} }) {
+  if (!options.headers) {
+    options.headers = {}
+  }
+  for (const [header, value] of Object.entries(HEADERS)) {
+    options.headers[header] = value
+  }
+  try {
+    const results = await fetch(URL + path, options)
+    const json = await results.json()
+    if (json.error) {
+      console.log('server error:', json.error)
+      throw Error(json.error)
+    } else {
+      return json
+    }
+  } catch (error) {
+    console.log('throwing error:', error)
+    throw error
+  }
 }
 
-export async function sendContactEmails ({ to, from, text, html }) {
-  return fetch('/mailgun/contact', {
+export async function getCaptchaKey () {
+  return request('/recaptcha-keys/thedebbiechen_com')
+    .then((res) => res.key)
+}
+
+export async function sendEmail ({ to, from, cc, bcc, subject, text, html }) {
+  return request('/mailgun/send', {
     method: 'post',
-    headers: HEADERS,
     body: JSON.stringify({
-      from,
+      domain: MAILGUN_DOMAIN,
       to,
+      from,
+      cc,
+      bcc,
+      subject,
       text,
       html
     })
-  }).then((res) => res.json())
-    .then((res) => {
-      if (res.error) {
-        throw res.error
-      } else {
-        return res.message
-      }
-    })
+  }).then((res) => res.message)
 }

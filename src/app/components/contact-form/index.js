@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import ReCaptcha from 'react-recaptcha'
 
-import { sendContactEmails } from '../../api'
+import { sendEmail } from '../../api'
 import Spinner from '../spinner'
 import StyledInput from './components/styled-input'
 
@@ -67,12 +67,22 @@ class ContactForm extends Component {
     if (canSubmit) {
       this.setState({ isLoading: true })
 
-      sendContactEmails({
-        from: email.value,
+      const toContact = {
         to,
-        text: message.value
-      }).then((res) => this.setState({ isLoading: false, emailSent: true, error: null }))
-        .catch((error) => this.setState({ isLoading: false, emailSent: true, error }))
+        subject: 'Contact Form',
+        text: `${email.value} says...\n\n${message.value}`
+      }
+
+      const confirmation = {
+        to: email.value,
+        subject: 'Thank You',
+        text: 'Debbie Chen has recieved your message!\n\nYour message:\n' + message.value
+      }
+
+      sendEmail(toContact)
+        .then((res) => sendEmail(confirmation).catch((error) => this.setState({ isLoading: false, emailSent: true, error })))
+        .then((res) => this.setState({ isLoading: false, emailSent: true, error: null }))
+        .catch((error) => this.setState({ isLoading: false, emailSent: false, error }))
     }
   }
 

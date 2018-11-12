@@ -2,7 +2,6 @@
   "name": "debbie",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
@@ -18,13 +17,8 @@
     "serve": "^10.0.2"
   },
   "scripts": {
-    "emulate": "run-p dev-server app",
-    "start": "run-p app server",
-    "app": "serve -s build",
-    "server": "node server",
-    "dev": "run-p dev-app dev-server",
-    "dev-app": "react-scripts start",
-    "dev-server": "node-env-run server --exec nodemon",
+    "start": "serve -s build",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "postinstall": "npm run build"
