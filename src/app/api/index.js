@@ -28,9 +28,12 @@ async function request (path, options = { headers: {} }) {
   }
 }
 
-export async function sendEmail ({ to, from, cc, bcc, subject, text, html }) {
+export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html }) {
   return request('/mailgun/send', {
     method: 'post',
+    headers: {
+      'recaptcha-token': token
+    },
     body: JSON.stringify({
       domain: MAILGUN_DOMAIN,
       to,

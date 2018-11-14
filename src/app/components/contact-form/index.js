@@ -23,7 +23,7 @@ class ContactForm extends Component {
   state = {
     isLoading: false,
     error: null,
-    captchaToken: null,
+    token: null,
     emailSent: false,
     fieldErrors: false,
     fields: {
@@ -52,7 +52,7 @@ class ContactForm extends Component {
     } = this.props
 
     const {
-      captchaToken,
+      token,
       fieldErrors,
       emailSent,
       fields
@@ -63,7 +63,7 @@ class ContactForm extends Component {
       message
     } = fields
 
-    const canSubmit = captchaToken && !fieldErrors && !emailSent
+    const canSubmit = token && !fieldErrors && !emailSent
 
     if (canSubmit) {
       this.setState({ isLoading: true })
@@ -74,16 +74,9 @@ class ContactForm extends Component {
         text: `${email.value} says...\n\n${message.value}`
       }
 
-      const confirmation = {
-        to: email.value,
-        subject: 'Thank You',
-        text: 'Debbie Chen has recieved your message!\n\nYour message:\n' + message.value
-      }
-
-      sendEmail(toContact)
-        .then((res) => sendEmail(confirmation).catch((error) => this.setState({ isLoading: false, emailSent: true, error })))
-        .then((res) => this.setState({ isLoading: false, emailSent: true, error: null }))
-        .catch((error) => this.setState({ isLoading: false, emailSent: false, error }))
+      sendEmail({ ...toContact, token })
+        .then((res) => this.setState({ isLoading: false, emailSent: true, error: null, token: null }))
+        .catch((error) => this.setState({ isLoading: false, emailSent: false, error, token: null }))
     }
   }
 
@@ -122,7 +115,10 @@ class ContactForm extends Component {
         <PopUpModal className='idk-why-this-works' isOpen={isLoading}>
           <Spinner color={accent} />
         </PopUpModal>
-        <div className='form'>
+        <div
+          className='form'
+          style={error ? null : { marginBottom: '1em' }}
+        >
           <StyledInput
             label='email'
             type='email'
@@ -146,7 +142,7 @@ class ContactForm extends Component {
             <ReCaptcha
               sitekey={CAPTCHA_KEY}
               render='explicit'
-              verifyCallback={(captchaToken) => this.setState({ captchaToken })}
+              verifyCallback={(token) => this.setState({ token })}
             />
           </div>
           <div
@@ -156,7 +152,11 @@ class ContactForm extends Component {
             send
           </div>
         </div>
-        {error ? error.message : null}
+        {error ? (
+          <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
+            {error.message}
+          </div>
+        ) : null}
       </div>
     )
   }
