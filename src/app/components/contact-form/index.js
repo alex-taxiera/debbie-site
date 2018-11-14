@@ -102,12 +102,12 @@ class ContactForm extends Component {
     const {
       isLoading,
       error,
-      captchaToken,
+      token,
       emailSent,
       fieldErrors
     } = this.state
 
-    const canSubmit = captchaToken && !fieldErrors && !emailSent
+    const canSubmit = token && !fieldErrors && !emailSent
 
     return (
       <div className='contact-form'>
