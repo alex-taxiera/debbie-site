@@ -93,30 +93,30 @@ class StyledInput extends Component {
     return (
       <div className='styled-input-wrapper' style={{ ...wrapperStyle, ...(!error ? { paddingBottom: '1.2em' } : null) }}>
         <div className='styled-input'>
-          {type === 'textarea'
-            ? (
-              <textarea
-                className='box'
-                style={inputStyle}
-                value={value}
-                required={isRequired}
-                onChange={this.onChange}
-                onFocus={this.onFocus}
-                onBlur={this.onBlur}
-              />
-            ) : (
-              <input
-                className='box'
-                style={inputStyle}
-                type={type}
-                value={value}
-                required={isRequired}
-                onChange={this.onChange}
-                onFocus={this.onFocus}
-                onBlur={this.onBlur}
-              />
-            )
-          }
+          <div className='input-wrapper'>
+            {type === 'textarea'
+              ? (
+                <textarea
+                  style={inputStyle}
+                  value={value}
+                  required={isRequired}
+                  onChange={this.onChange}
+                  onFocus={this.onFocus}
+                  onBlur={this.onBlur}
+                />
+              ) : (
+                <input
+                  style={inputStyle}
+                  type={type}
+                  value={value}
+                  required={isRequired}
+                  onChange={this.onChange}
+                  onFocus={this.onFocus}
+                  onBlur={this.onBlur}
+                />
+              )
+            }
+          </div>
           <span
             className='line'
             style={{

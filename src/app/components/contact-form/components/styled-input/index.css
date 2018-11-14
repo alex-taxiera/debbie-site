@@ -21,6 +21,13 @@
   position: relative;
 }
 
+.input-wrapper {
+  background: inherit;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
+          box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
+}
+
 input,
 textarea {
   width: calc(100% - 2rem);
