@@ -1,4 +1,4 @@
-const URL = 'https://aws-proxy.herokuapp.com/proxy'
+const URL = 'https://aws-proxy.herokuapp.com/proxy/user'
 const MAILGUN_DOMAIN = 'mg.thedebbiechen.com'
 
 const HEADERS = {
@@ -26,11 +26,6 @@ async function request (path, options = { headers: {} }) {
     console.log('throwing error:', error)
     throw error
   }
-}
-
-export async function getCaptchaKey () {
-  return request('/recaptcha-keys/thedebbiechen_com')
-    .then((res) => res.key)
 }
 
 export async function sendEmail ({ to, from, cc, bcc, subject, text, html }) {

@@ -9,9 +9,10 @@ import StyledInput from './components/styled-input'
 import './index.css'
 import PopUpModal from '../pop-up-modal'
 
+const CAPTCHA_KEY = '6LdWKnkUAAAAAEgpCXhzjRikK1luGxnZ8TyiUdpG'
+
 class ContactForm extends Component {
   static propTypes = {
-    captchaKey: propTypes.string.isRequired,
     title: propTypes.string,
     to: propTypes.string.isRequired,
     accent: propTypes.string,
@@ -100,7 +101,6 @@ class ContactForm extends Component {
 
   render = () => {
     const {
-      captchaKey,
       title,
       accent,
       errorColor
@@ -143,15 +143,11 @@ class ContactForm extends Component {
             onChange={(state) => this.handleChange('message', state)}
           />
           <div className='captcha'>
-            {captchaKey
-              ? (
-                <ReCaptcha
-                  sitekey={captchaKey}
-                  render='explicit'
-                  verifyCallback={(captchaToken) => this.setState({ captchaToken })}
-                />
-              ) : (<div>there was an error with this form</div>)
-            }
+            <ReCaptcha
+              sitekey={CAPTCHA_KEY}
+              render='explicit'
+              verifyCallback={(captchaToken) => this.setState({ captchaToken })}
+            />
           </div>
           <div
             className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '')}
