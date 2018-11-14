@@ -76,12 +76,12 @@ class App extends Component {
           </div>
         </div>
         <div className='footer'>
-          <div
+          <span
             className='contact-btn'
             onClick={() => this.setState({ contactFormIsOpen: true })}
           >
             contact me
-          </div>
+          </span>
           <PopUpModal
             isOpen={contactFormIsOpen}
             onRequestClose={() => this.setState({ contactFormIsOpen: false })}
