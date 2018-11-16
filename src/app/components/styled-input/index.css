@@ -1,15 +1,16 @@
 .error {
-  height: 1.2em;
+  height: 1em;
   text-align: left;
-  padding-left: 1rem;
+  padding-left: 1em;
+  font-size: 0.75em;
 }
 
 .styled-input label {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1em;
+  left: 1em;
   -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
+          transition: all 0.25s ease;
   pointer-events: none;
 }
 
@@ -30,11 +31,11 @@
 
 input,
 textarea {
-  width: calc(100% - 2rem);
+  width: calc(100% - 2em);
   display: block;
-  padding: 1rem;
+  padding: 1em;
   border: 0;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 input:focus,
@@ -53,11 +54,12 @@ textarea {
   display: block;
   width: 0;
   height: 3px;
+  border-radius: 0 0 3px 3px;
   position: absolute;
   bottom: 0;
   left: 0;
   -webkit-transition: all 0.125s ease;
-  transition: all 0.125s ease;
+          transition: all 0.125s ease;
 }
 
 ::-webkit-resizer {

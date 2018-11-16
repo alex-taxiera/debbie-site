@@ -91,7 +91,7 @@ class StyledInput extends Component {
     } = this.state
 
     return (
-      <div className='styled-input-wrapper' style={{ ...wrapperStyle, ...(!error ? { paddingBottom: '1.2em' } : null) }}>
+      <div className='styled-input-wrapper' style={wrapperStyle}>
         <div className='styled-input'>
           <div className='input-wrapper'>
             {type === 'textarea'
@@ -136,8 +136,8 @@ class StyledInput extends Component {
               ...(focused ? { color: accent } : null),
               ...(value ? {
                 fontSize: '0.75em',
-                top: '-1.25rem',
-                left: '1rem',
+                top: '-1.25em',
+                left: '1em',
                 WebkitTransition: 'all 0.125s ease',
                 transition: 'all 0.125s ease'
               } : null),
@@ -149,7 +149,7 @@ class StyledInput extends Component {
         </div>
         <div
           className='error'
-          style={{ color: errorColor, ...(!error ? { display: 'none' } : null) }}
+          style={{ color: errorColor }}
         >
           {error || null}
         </div>
