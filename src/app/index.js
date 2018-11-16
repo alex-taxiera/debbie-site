@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   render = () => {
-    console.log('render', this.state)
     const {
       error,
       currentPage,
