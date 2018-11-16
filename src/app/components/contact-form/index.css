@@ -11,6 +11,10 @@
   padding: 18px;
 }
 
+.padded-side.box {
+  padding: 0 18px;
+}
+
 .white.box {
   background-color: white;
 }

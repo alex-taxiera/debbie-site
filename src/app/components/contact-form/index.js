@@ -4,7 +4,7 @@ import ReCaptcha from 'react-recaptcha'
 
 import { sendEmail } from '../../api'
 import Spinner from '../spinner'
-import StyledInput from './components/styled-input'
+import StyledInput from '../styled-input'
 
 import './index.css'
 import PopUpModal from '../pop-up-modal'
@@ -115,10 +115,7 @@ class ContactForm extends Component {
         <PopUpModal className='idk-why-this-works' isOpen={isLoading}>
           <Spinner color={accent} />
         </PopUpModal>
-        <div
-          className='form'
-          style={error ? null : { marginBottom: '1em' }}
-        >
+        <div className='form'>
           <StyledInput
             label='email'
             type='email'
@@ -145,6 +142,9 @@ class ContactForm extends Component {
               verifyCallback={(token) => this.setState({ token })}
             />
           </div>
+          <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
+            {error ? error.message : null}
+          </div>
           <div
             className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '')}
             onClick={(canSubmit ? this.handleSubmit : () => {})}
@@ -152,11 +152,6 @@ class ContactForm extends Component {
             send
           </div>
         </div>
-        {error ? (
-          <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
-            {error.message}
-          </div>
-        ) : null}
       </div>
     )
   }
