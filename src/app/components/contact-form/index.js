@@ -58,23 +58,30 @@ class ContactForm extends Component {
       fields
     } = this.state
 
-    const {
+    let [
       email,
-      message
-    } = fields
+      message,
+      firstName,
+      lastName
+    ] = Object.values(fields).map(({ value }) => value.trim())
 
     const canSubmit = token && !fieldErrors && !emailSent
 
     if (canSubmit) {
       this.setState({ isLoading: true })
 
-      const toContact = {
+      const contactEmail = {
         to,
         subject: 'Contact Form',
-        text: `${email.value} says...\n\n${message.value}`
+        text: `${firstName} ${lastName} says...\n\n${message}\n\nemail: ${email}`,
+        confirmationEmail: {
+          to: email,
+          subject: 'Your Message was Received',
+          text: `Thank You For Contacting Debbie Chen!\n\nHere was your message:\n"${message}"`
+        }
       }
 
-      sendEmail({ ...toContact, token })
+      sendEmail({ ...contactEmail, token })
         .then((res) => this.setState({ isLoading: false, emailSent: true, error: null, token: null }))
         .catch((error) => this.setState({ isLoading: false, emailSent: false, error, token: null }))
     }
@@ -116,41 +123,65 @@ class ContactForm extends Component {
           <Spinner color={accent} />
         </PopUpModal>
         <div className='form'>
+          <div className='double-input'>
+            <StyledInput
+              label='first name'
+              type='text'
+              isRequired
+              isValid={(value) => value.trim()}
+              erroMessage='this is a required field'
+              errorColor={errorColor}
+              accent={accent}
+              onChange={(state) => this.handleChange('firstName', state)}
+            />
+            <StyledInput
+              label='last name'
+              type='text'
+              isRequired
+              isValid={(value) => value.trim()}
+              erroMessage='this is a required field'
+              errorColor={errorColor}
+              accent={accent}
+              onChange={(state) => this.handleChange('lastName', state)}
+            />
+          </div>
           <StyledInput
             label='email'
-            type='email'
+            type='text'
+            isRequired
             // eslint-disable-next-line no-control-regex
             isValid={(value) => /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(value)}
             errorMessage='please enter a valid email'
             errorColor={errorColor}
             accent={accent}
-            isRequired
             onChange={(state) => this.handleChange('email', state)}
           />
           <StyledInput
             label='message'
             type='textarea'
+            isRequired
+            isValid={(value) => value.trim()}
+            errorMessage='this is a required field'
             errorColor={errorColor}
             accent={accent}
-            isRequired
             onChange={(state) => this.handleChange('message', state)}
           />
-          <div className='captcha'>
-            <ReCaptcha
-              sitekey={CAPTCHA_KEY}
-              render='explicit'
-              verifyCallback={(token) => this.setState({ token })}
-            />
-          </div>
-          <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
-            {error ? error.message : null}
-          </div>
-          <div
-            className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '')}
-            onClick={(canSubmit ? this.handleSubmit : () => {})}
-          >
-            send
-          </div>
+        </div>
+        <div className='captcha'>
+          <ReCaptcha
+            sitekey={CAPTCHA_KEY}
+            render='explicit'
+            verifyCallback={(token) => this.setState({ token })}
+          />
+        </div>
+        <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
+          {error ? error.message : null}
+        </div>
+        <div
+          className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '')}
+          onClick={(canSubmit ? this.handleSubmit : () => {})}
+        >
+          send
         </div>
       </div>
     )

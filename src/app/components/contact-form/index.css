@@ -7,6 +7,28 @@
   margin: auto;
 }
 
+.double-input > div {
+  display: inline-block;
+  width: 45%;
+  vertical-align: middle;
+}
+
+.double-input div:first-child {
+  margin-right: 10%;
+}
+
+.form {
+  padding: 1em 0;
+}
+
+.form > div {
+  margin-bottom: 2em;
+}
+
+.form > div:last-child {
+  margin-bottom: 0;
+}
+
 .padded.box {
   padding: 18px;
 }
