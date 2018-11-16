@@ -129,7 +129,7 @@ class ContactForm extends Component {
               type='text'
               isRequired
               isValid={(value) => value.trim()}
-              erroMessage='this is a required field'
+              errorMessage='this is a required field'
               errorColor={errorColor}
               accent={accent}
               onChange={(state) => this.handleChange('firstName', state)}
@@ -139,7 +139,7 @@ class ContactForm extends Component {
               type='text'
               isRequired
               isValid={(value) => value.trim()}
-              erroMessage='this is a required field'
+              errorMessage='this is a required field'
               errorColor={errorColor}
               accent={accent}
               onChange={(state) => this.handleChange('lastName', state)}
