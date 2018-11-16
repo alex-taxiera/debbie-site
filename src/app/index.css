@@ -89,7 +89,7 @@
 
 .contact-btn {
   -webkit-transition: all 0.125s ease;
-  transition: all 0.125s ease;
+          transition: all 0.125s ease;
   cursor: pointer;
   color: inherit;
   text-decoration: none;
@@ -100,16 +100,39 @@
   color: #84240C;
 }
 
-.close-form-x {
-  float: right;
-  color: inherit;
-  display: block;
-  margin-top: -15px;
-  margin-right: -10px;
+.modal-header {
+  border-radius: 3px 3px 0 0;
+  margin: -18px -18px 0;
+  display: flex;
 }
 
-.close-form-x:hover {
-  color: red;
+.modal-close {
+  margin-left: auto;
+  height: 10px;
+}
+
+.cross-icon,
+.modal-close,
+.cross-icon svg {
+  border-radius: 0 3px 0 0;
+}
+
+/* ICONS */
+
+.cross-icon svg {
+  width: 10px;
+  padding: 0.5em;
+  margin-top: 0;
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
+}
+
+.cross-icon svg:hover,
+.cross-icon svg:active {
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
+  fill: white;
+  background-color: red;
 }
 
 /* MENU COMPONENT */
@@ -188,11 +211,14 @@
   }
   /* MENU COMPONENT */
   .menu {
+    position: -webkit-sticky;
+    position:    -moz-sticky;
+    position:     -ms-sticky;
+    position:      -o-sticky;
+    position:         sticky;
+    top: 0;
     width: 100%;
     background-color: #FFF;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
     padding: 0;
     line-height: 2em;
     border-radius: 3px 3px 0 0;
@@ -227,9 +253,8 @@
   .padded.box {
     padding: 9px;
   }
-  .close-form-x {
-    margin-top: -7.5px;
-    margin-right: -5px;
+  .modal-header {
+    margin: -9px -9px 0;
   }
   .text-right {
     padding-right: 0.75em;

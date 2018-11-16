@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import propTypes from 'prop-types'
+import SVG from 'react-inlinesvg'
 
 import { fourPages } from './shapes'
+
 import Menu from './components/menu'
 import PopUpModal from './components/pop-up-modal'
 import ContactForm from './components/contact-form'
+// import Spinner from './components/spinner'
+
+import crossIcon from './assets/cross.svg'
 
 import './index.css'
 
@@ -41,6 +46,7 @@ class App extends Component {
   }
 
   render = () => {
+    console.log('render', this.state)
     const {
       error,
       currentPage,
@@ -88,11 +94,17 @@ class App extends Component {
             className='modal'
           >
             <div className='white box padded' style={{ maxWidth: 500, margin: 'auto' }}>
-              <div
-                className='close-form-x'
-                onClick={() => this.setState({ contactFormIsOpen: false })}
-              >
-                X
+              <div className='modal-header'>
+                <div
+                  className='modal-close'
+                  onClick={() => this.setState({ contactFormIsOpen: false })}
+                >
+                  <SVG
+                    src={crossIcon}
+                    className='cross-icon'
+                    alt='X'
+                  />
+                </div>
               </div>
               <ContactForm
                 title='Contact Me'
