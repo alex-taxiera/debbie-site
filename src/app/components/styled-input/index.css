@@ -14,15 +14,14 @@
   pointer-events: none;
 }
 
-.styled-input-wrapper {
-  margin: 2rem 0 1rem;
-}
-
 .styled-input {
   position: relative;
+  width: 100%;
+  margin-top: 0.9375em;
 }
 
 .input-wrapper {
+  width: inherit;
   background: inherit;
   border-radius: 3px;
   -webkit-box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
@@ -60,8 +59,4 @@ textarea {
   left: 0;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease;
-}
-
-::-webkit-resizer {
-  display: none;
 }
