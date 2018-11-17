@@ -47,6 +47,12 @@
   box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
 }
 
+.success-message {
+  display: inherit;
+  text-align: center;
+  margin-top: 6px;
+}
+
 .submit-btn {
   width: 33%;
   margin: 1.2rem auto 0;
