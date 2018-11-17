@@ -109,7 +109,7 @@ class App extends Component {
                 title='Contact Me'
                 to={contact}
                 accent='#874E4C'
-                errorColor='blue'
+                errorColor='#fa1e3f'
               />
             </div>
           </PopUpModal>
