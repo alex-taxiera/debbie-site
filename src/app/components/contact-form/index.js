@@ -50,9 +50,14 @@ class ContactForm extends Component {
 
   onSubmit = () => {
     const {
-      canSubmit,
-      badClick
+      badClick,
+      token,
+      fieldErrors,
+      emailSent
     } = this.state
+
+    const canSubmit = token && !fieldErrors && !emailSent
+
     if (canSubmit) {
       this.setState({ message: null })
       this.handleSubmit()
