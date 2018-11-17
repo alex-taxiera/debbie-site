@@ -105,8 +105,8 @@ class ContactForm extends Component {
       }
 
       sendEmail({ ...contactEmail, token })
-        .then((res) => console.log(res) || this.setState({ isLoading: false, emailSent: true, error: null, token: null }))
-        .catch((error) => console.log(error) || this.setState({ isLoading: false, emailSent: false, error, token: null }))
+        .then((res) => this.setState({ isLoading: false, emailSent: true, error: null, token: null }))
+        .catch((error) => this.setState({ isLoading: false, emailSent: false, error: error.message, token: null }))
     }
   }
 

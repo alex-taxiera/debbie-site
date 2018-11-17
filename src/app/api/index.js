@@ -44,5 +44,12 @@ export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html
       text,
       html
     })
-  }).then((res) => res.message)
+  }).then((res) => res.body.message)
+    .catch((res) => {
+      if (res instanceof Error) {
+        throw res
+      } else {
+        return res.body
+      }
+    })
 }
