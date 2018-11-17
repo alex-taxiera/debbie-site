@@ -23,6 +23,8 @@ class ContactForm extends Component {
   state = {
     isLoading: false,
     error: null,
+    message: null,
+    badClick: false,
     token: null,
     emailSent: false,
     fieldErrors: false,
@@ -44,6 +46,22 @@ class ContactForm extends Component {
     } = this.state
 
     return Object.values(fields).some((state) => state.error)
+  }
+
+  onSubmit = () => {
+    const {
+      canSubmit,
+      badClick
+    } = this.state
+    if (canSubmit) {
+      this.setState({ message: null })
+      this.handleSubmit()
+    } else if (!badClick) {
+      this.setState({ message: 'please complete the form', badClick: true }, () => {
+        const self = this
+        setTimeout(() => self.setState({ badClick: false }), 1000)
+      })
+    }
   }
 
   handleSubmit = () => {
@@ -82,8 +100,8 @@ class ContactForm extends Component {
       }
 
       sendEmail({ ...contactEmail, token })
-        .then((res) => this.setState({ isLoading: false, emailSent: true, error: null, token: null }))
-        .catch((error) => this.setState({ isLoading: false, emailSent: false, error, token: null }))
+        .then((res) => console.log(res) || this.setState({ isLoading: false, emailSent: true, error: null, token: null }))
+        .catch((error) => console.log(error) || this.setState({ isLoading: false, emailSent: false, error, token: null }))
     }
   }
 
@@ -111,80 +129,87 @@ class ContactForm extends Component {
       error,
       token,
       emailSent,
-      fieldErrors
+      fieldErrors,
+      message,
+      badClick
     } = this.state
 
     const canSubmit = token && !fieldErrors && !emailSent
 
-    return (
-      <div className='contact-form'>
-        <div className='title'>{title}</div>
-        <PopUpModal className='idk-why-this-works' isOpen={isLoading}>
-          <Spinner color={accent} />
-        </PopUpModal>
-        <div className='form'>
-          <div className='double-input'>
+    return emailSent
+      ? (
+        <div className='success-message'>
+          Your message has been received, thank you!
+        </div>
+      ) : (
+        <div className='contact-form'>
+          <div className='title'>{title}</div>
+          <PopUpModal className='idk-why-this-works' isOpen={isLoading}>
+            <Spinner color={accent} />
+          </PopUpModal>
+          <div className='form'>
+            <div className='double-input'>
+              <StyledInput
+                label='first name'
+                type='text'
+                isRequired
+                isValid={(value) => value.trim()}
+                errorMessage='this is a required field'
+                errorColor={errorColor}
+                accent={accent}
+                onChange={(state) => this.handleChange('firstName', state)}
+              />
+              <StyledInput
+                label='last name'
+                type='text'
+                isRequired
+                isValid={(value) => value.trim()}
+                errorMessage='this is a required field'
+                errorColor={errorColor}
+                accent={accent}
+                onChange={(state) => this.handleChange('lastName', state)}
+              />
+            </div>
             <StyledInput
-              label='first name'
+              label='email'
               type='text'
               isRequired
-              isValid={(value) => value.trim()}
-              errorMessage='this is a required field'
+              // eslint-disable-next-line no-control-regex
+              isValid={(value) => /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(value)}
+              errorMessage='please enter a valid email'
               errorColor={errorColor}
               accent={accent}
-              onChange={(state) => this.handleChange('firstName', state)}
+              onChange={(state) => this.handleChange('email', state)}
             />
             <StyledInput
-              label='last name'
-              type='text'
+              label='message'
+              type='textarea'
               isRequired
               isValid={(value) => value.trim()}
               errorMessage='this is a required field'
               errorColor={errorColor}
               accent={accent}
-              onChange={(state) => this.handleChange('lastName', state)}
+              onChange={(state) => this.handleChange('message', state)}
             />
           </div>
-          <StyledInput
-            label='email'
-            type='text'
-            isRequired
-            // eslint-disable-next-line no-control-regex
-            isValid={(value) => /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(value)}
-            errorMessage='please enter a valid email'
-            errorColor={errorColor}
-            accent={accent}
-            onChange={(state) => this.handleChange('email', state)}
-          />
-          <StyledInput
-            label='message'
-            type='textarea'
-            isRequired
-            isValid={(value) => value.trim()}
-            errorMessage='this is a required field'
-            errorColor={errorColor}
-            accent={accent}
-            onChange={(state) => this.handleChange('message', state)}
-          />
+          <div className='captcha'>
+            <ReCaptcha
+              sitekey={CAPTCHA_KEY}
+              render='explicit'
+              verifyCallback={(token) => this.setState({ token })}
+            />
+          </div>
+          <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
+            {error ? error.message : message || null}
+          </div>
+          <div
+            className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '') + (badClick ? ' shake' : '')}
+            onClick={this.onSubmit}
+          >
+            send
+          </div>
         </div>
-        <div className='captcha'>
-          <ReCaptcha
-            sitekey={CAPTCHA_KEY}
-            render='explicit'
-            verifyCallback={(token) => this.setState({ token })}
-          />
-        </div>
-        <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
-          {error ? error.message : null}
-        </div>
-        <div
-          className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '')}
-          onClick={(canSubmit ? this.handleSubmit : () => {})}
-        >
-          send
-        </div>
-      </div>
-    )
+      )
   }
 }
 
