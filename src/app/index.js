@@ -85,7 +85,7 @@ class App extends Component {
             className='contact-btn'
             onClick={() => this.setState({ contactFormIsOpen: true })}
           >
-            contact me
+            Contact Me
           </span>
           <PopUpModal
             isOpen={contactFormIsOpen}

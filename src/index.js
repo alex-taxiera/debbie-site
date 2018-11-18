@@ -18,19 +18,19 @@ ReactDOM.render(
     contact='debbiechen@umass.edu'
     pages={{
       page1: {
-        name: 'home',
+        name: 'Home',
         content: home()
       },
       page2: {
-        name: 'about',
+        name: 'About',
         content: about()
       },
       page3: {
-        name: 'resume',
+        name: 'Resume',
         content: resume()
       },
       page4: {
-        name: 'sample',
+        name: 'Sample',
         content: sample()
       }
     }}

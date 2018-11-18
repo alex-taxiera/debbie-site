@@ -21,7 +21,6 @@
 }
 
 .box {
-  background: inherit;
   border-radius: 3px;
   -webkit-box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
           box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
@@ -62,7 +61,7 @@
   font-size: 2em;
   text-align: center;
   display: inline-block;
-  padding: 0 1em;
+  padding: 0 0.5em;
   white-space: nowrap;
 }
 
@@ -141,7 +140,7 @@
   width: 60%;
   margin: 0 auto 2em;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #825d4e;
 }
 
 .menu .option {
@@ -164,7 +163,7 @@
 
 .menu .option.selected {
   color: #F0F0F0;
-  background-color: #563232;
+  background-color: #825d4e;
   border-radius: 100px;
 }
 

@@ -155,7 +155,7 @@ class ContactForm extends Component {
           <div className='form'>
             <div className='double-input'>
               <StyledInput
-                label='first name'
+                label='First Name'
                 type='text'
                 isRequired
                 isValid={(value) => value.trim()}
@@ -165,7 +165,7 @@ class ContactForm extends Component {
                 onChange={(state) => this.handleChange('firstName', state)}
               />
               <StyledInput
-                label='last name'
+                label='Last Name'
                 type='text'
                 isRequired
                 isValid={(value) => value.trim()}
@@ -176,7 +176,7 @@ class ContactForm extends Component {
               />
             </div>
             <StyledInput
-              label='email'
+              label='Email'
               type='text'
               isRequired
               // eslint-disable-next-line no-control-regex
@@ -187,7 +187,7 @@ class ContactForm extends Component {
               onChange={(state) => this.handleChange('email', state)}
             />
             <StyledInput
-              label='message'
+              label='Message'
               type='textarea'
               isRequired
               isValid={(value) => value.trim()}
@@ -208,10 +208,10 @@ class ContactForm extends Component {
             {error ? error.message : message || null}
           </div>
           <div
-            className={'submit-btn padded box' + (!canSubmit ? ' disabled' : '') + (badClick ? ' shake' : '')}
+            className={'submit-btn box' + (!canSubmit ? ' disabled' : '') + (badClick ? ' shake' : '')}
             onClick={this.onSubmit}
           >
-            send
+            Submit
           </div>
         </div>
       )
