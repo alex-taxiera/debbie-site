@@ -144,7 +144,7 @@ class ContactForm extends Component {
     return emailSent
       ? (
         <div className='success-message'>
-          Your message has been received, thank you!
+          Your message has been received. Thank you!
         </div>
       ) : (
         <div className='contact-form'>

@@ -7,16 +7,16 @@ export default function render () {
         <img height='auto' width='100%' style={{ maxWidth: 240 }} src='/profile.jpg' alt='profile.jpg' />
       </div>
       <p>
-        Debbie Chen was born and raised in Brockton Massachusetts.  A passionate music educator and Bassoonist, she studies music at the University of Massachusetts Amherst where she is earning her Bachelor of Music in Music education and Bassoon performance. Her former teachers include Remy Taghavi, Stephen Walt and Janet Underhill. She will receive her teaching license in music grade Pre-k - 12 in February 2019.
+        Debbie Chen was born and raised in Brockton, Massachusetts. A passionate music educator and bassoonist, Chen studies music at the University of Massachusetts Amherst (UMass Amherst) where she is earning her Bachelor of Music in music education and bassoon performance. Her former teachers include Remy Taghavi, Stephen Walt and Janet Underhill. Chen will receive her teaching license in music grades Pre-k - 12 in February 2019.
       </p>
       <p>
-        As a bassoonist, Ms. Chen as performed with the Umass wind ensemble, Umass symphony orchestra,  Umass symphony band, Umass all-university orchestra, UMMB, Umass Marimba ensemble, the Pioneer Valley symphony orchestra, Windham orchestra, Mt. Holyoke college Orchestra, Boston youth symphony orchestra, Sharon community band and Hanson. She has also performed solo recitals her junior and senior year of college.
+        As a bassoonist, Chen has performed with the UMass Wind Ensemble, UMass Symphony Orchestra, UMass Symphony Band, Umass All-University Orchestra, UMass Marching Band, UMass Marimba Ensemble, Pioneer Valley Symphony Orchestra, Windham Orchestra, Mt. Holyoke College Orchestra, Boston Youth Symphony Orchestra (BYSO), Sharon Community Band, and Hanson. She has also performed solo recitals her junior and senior year of college.
       </p>
       <p>
-      Ms. Chen strives to provide a high level of music and music education to schools, communities and anywhere else music can reach.
+        Chen strives to provide a high level of music and music education to schools, communities, and anywhere else music can reach.
       </p>
       <p>
-        Ms. Chen completed her student teaching at Pembroke High school where she taught and worked with Freshmen band, Concert Band, Wind ensemble, Concert Choir, Guitar lab I, and piano lab I. She is currently student teaching in Dedham at Riverdale elementary and the Early childhood education center, where she is working with kindergarteners and 5th grade utilizing the music learning theory and the Gordon approach.
+        Chen completed her student teaching at Pembroke High school where she taught and worked with the freshman band, Concert Band, Wind Ensemble, Concert Choir, Guitar lab I, and Piano Lab I. She is currently student teaching in Dedham at Riverdale Elementary and the Early Childhood Education Center, where she is working with kindergarteners and 5th graders utilizing the music learning theory and the Gordon approach.
       </p>
     </div>
   )
