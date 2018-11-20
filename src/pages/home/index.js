@@ -13,6 +13,7 @@ export default async function render () {
 
     return (
       <Carousel
+        initialSlideHeight={400}
         autoGenerateStyleTag={false}
         transitionMode='fade'
         autoplay
