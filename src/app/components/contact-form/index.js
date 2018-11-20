@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import ReCaptcha from 'react-recaptcha'
 
-import { sendEmail } from '../../api'
+import { sendEmail } from '../../../api'
 import Spinner from '../spinner'
 import StyledInput from '../styled-input'
 
@@ -27,8 +27,16 @@ class ContactForm extends Component {
     badClick: false,
     token: null,
     emailSent: false,
-    fieldErrors: false,
+    fieldErrors: true,
     fields: {
+      firstName: {
+        value: '',
+        error: null
+      },
+      lastName: {
+        value: '',
+        error: null
+      },
       email: {
         value: '',
         error: null
@@ -40,12 +48,60 @@ class ContactForm extends Component {
     }
   }
 
+  componentWillMount = () => {
+    const {
+      accent
+    } = this.props
+
+    const [r, g, b] = Object.values(this.hexToRgb(accent)).map((color) => {
+      color = color / 255
+      if (color <= 0.03928) {
+        return color / 12.92
+      } else {
+        return Math.pow(((color + 0.055) / 1.055), 2.4)
+      }
+    })
+
+    this.setState({ accentIsDark: 0.2126 * r + 0.7152 * g + 0.0722 * b <= 0.179 })
+  }
+
+  hexToRgb = (hex) => {
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
+      return r + r + g + g + b + b
+    })
+
+    const [match, red, green, blue] = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+    return match ? {
+      r: parseInt(red, 16),
+      g: parseInt(green, 16),
+      b: parseInt(blue, 16)
+    } : null
+  }
+
   hasErrors = () => {
     const {
       fields
     } = this.state
 
     return Object.values(fields).some((state) => state.error)
+  }
+
+  onRecaptcha = (token) => {
+    const {
+      message
+    } = this.state
+
+    const newState = {
+      token
+    }
+
+    if (token && message === 'please verify you are human') {
+      newState.message = null
+    }
+
+    this.setState(newState)
   }
 
   onSubmit = () => {
@@ -62,7 +118,8 @@ class ContactForm extends Component {
       this.setState({ message: null })
       this.handleSubmit()
     } else if (!badClick) {
-      this.setState({ message: 'please complete the form', badClick: true }, () => {
+      const message = !fieldErrors && !token ? 'please verify you are human' : 'please complete the form'
+      this.setState({ message, badClick: true }, () => {
         const self = this
         setTimeout(() => self.setState({ badClick: false }), 1000)
       })
@@ -112,13 +169,18 @@ class ContactForm extends Component {
 
   handleChange = (field, state) => {
     const {
-      fields
+      fields,
+      message
     } = this.state
 
     const newState = { fields: { ...fields, [field]: state } }
+    const fieldErrors = Object.values(newState.fields).some((state) => !state.value.trim() || state.error)
+    if (!fieldErrors && message === 'please complete the form') {
+      newState.message = null
+    }
     this.setState({
       ...newState,
-      fieldErrors: Object.values(newState.fields).some((state) => state.error)
+      fieldErrors
     })
   }
 
@@ -136,8 +198,11 @@ class ContactForm extends Component {
       emailSent,
       fieldErrors,
       message,
-      badClick
+      badClick,
+      accentIsDark
     } = this.state
+
+    const accentTextColor = accentIsDark ? 'white' : 'black'
 
     const canSubmit = token && !fieldErrors && !emailSent
 
@@ -158,8 +223,6 @@ class ContactForm extends Component {
                 label='First Name'
                 type='text'
                 isRequired
-                isValid={(value) => value.trim()}
-                errorMessage='this is a required field'
                 errorColor={errorColor}
                 accent={accent}
                 onChange={(state) => this.handleChange('firstName', state)}
@@ -168,8 +231,6 @@ class ContactForm extends Component {
                 label='Last Name'
                 type='text'
                 isRequired
-                isValid={(value) => value.trim()}
-                errorMessage='this is a required field'
                 errorColor={errorColor}
                 accent={accent}
                 onChange={(state) => this.handleChange('lastName', state)}
@@ -181,7 +242,7 @@ class ContactForm extends Component {
               isRequired
               // eslint-disable-next-line no-control-regex
               isValid={(value) => /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(value)}
-              errorMessage='please enter a valid email'
+              errorMessage='Please enter a valid email'
               errorColor={errorColor}
               accent={accent}
               onChange={(state) => this.handleChange('email', state)}
@@ -190,8 +251,6 @@ class ContactForm extends Component {
               label='Message'
               type='textarea'
               isRequired
-              isValid={(value) => value.trim()}
-              errorMessage='this is a required field'
               errorColor={errorColor}
               accent={accent}
               onChange={(state) => this.handleChange('message', state)}
@@ -201,13 +260,14 @@ class ContactForm extends Component {
             <ReCaptcha
               sitekey={CAPTCHA_KEY}
               render='explicit'
-              verifyCallback={(token) => this.setState({ token })}
+              verifyCallback={this.onRecaptcha}
             />
           </div>
           <div style={{ height: '1em', fontSize: '0.8em', color: errorColor }}>
             {error ? error.message : message || null}
           </div>
           <div
+            style={{ backgroundColor: accent, color: accentTextColor }}
             className={'submit-btn box' + (!canSubmit ? ' disabled' : '') + (badClick ? ' shake' : '')}
             onClick={this.onSubmit}
           >

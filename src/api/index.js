@@ -53,3 +53,15 @@ export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html
       }
     })
 }
+
+export async function listBucket (bucketName) {
+  return request(`/bucket/${bucketName}/list`)
+    .then((res) => res.body)
+    .catch((res) => {
+      if (res instanceof Error) {
+        throw res
+      } else {
+        return res.body
+      }
+    })
+}

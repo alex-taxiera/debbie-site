@@ -38,16 +38,20 @@ class StyledInput extends Component {
     const {
       onChange,
       isValid,
+      isRequired,
       errorMessage
     } = this.props
 
     const value = event.target.value
     const state = { value }
-    if (isValid && !isValid(value)) {
+    if (isRequired && (!value || !value.trim())) {
+      state.error = 'This is a required field'
+    } else if (isValid && !isValid(value)) {
       state.error = errorMessage
     } else {
       state.error = null
     }
+
     onChange && onChange(state)
     this.setState(state)
   }
@@ -66,9 +70,10 @@ class StyledInput extends Component {
     } = this.state
 
     const state = { focused: false }
-    if (!value && isRequired) {
-      state.error = 'this is a required field'
+    if (isRequired && (!value || !value.trim())) {
+      state.error = 'This is a required field'
     }
+
     this.setState(state)
   }
 
@@ -79,7 +84,6 @@ class StyledInput extends Component {
       color,
       accent,
       errorColor,
-      isRequired,
       inputStyle,
       wrapperStyle
     } = this.props
@@ -93,30 +97,26 @@ class StyledInput extends Component {
     return (
       <div className='styled-input-wrapper' style={wrapperStyle}>
         <div className='styled-input'>
-          <div className='input-wrapper'>
-            {type === 'textarea'
-              ? (
-                <textarea
-                  style={inputStyle}
-                  value={value}
-                  required={isRequired}
-                  onChange={this.onChange}
-                  onFocus={this.onFocus}
-                  onBlur={this.onBlur}
-                />
-              ) : (
-                <input
-                  style={inputStyle}
-                  type={type}
-                  value={value}
-                  required={isRequired}
-                  onChange={this.onChange}
-                  onFocus={this.onFocus}
-                  onBlur={this.onBlur}
-                />
-              )
-            }
-          </div>
+          {type === 'textarea'
+            ? (
+              <textarea
+                style={inputStyle}
+                value={value}
+                onChange={this.onChange}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+              />
+            ) : (
+              <input
+                style={inputStyle}
+                type={type}
+                value={value}
+                onChange={this.onChange}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+              />
+            )
+          }
           <span
             className='line'
             style={{
@@ -125,7 +125,7 @@ class StyledInput extends Component {
                   width: '100%',
                   WebkitTransition: 'all 0.075s ease',
                   transition: 'all 0.075s ease'
-                } : {}
+                } : null
               ),
               ...(error ? { background: errorColor } : { background: accent })
             }}

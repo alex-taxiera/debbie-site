@@ -1,7 +1,9 @@
 import React from 'react'
 
+import './index.css'
+
 export default function render () {
   return (
-    <div>home</div>
+    <div>resume</div>
   )
 }

@@ -5,6 +5,15 @@
   font-size: 0.75em;
 }
 
+.styled-input {
+  position: relative;
+  width: 100%;
+  margin-top: 0.9375em;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
+          box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
+}
+
 .styled-input label {
   position: absolute;
   top: 1em;
@@ -12,20 +21,6 @@
   -webkit-transition: all 0.25s ease;
           transition: all 0.25s ease;
   pointer-events: none;
-}
-
-.styled-input {
-  position: relative;
-  width: 100%;
-  margin-top: 0.9375em;
-}
-
-.input-wrapper {
-  width: inherit;
-  background: inherit;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
-          box-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
 }
 
 input,
