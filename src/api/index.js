@@ -1,4 +1,4 @@
-const URL = 'https://aws-proxy.herokuapp.com/proxy/user'
+const URL = 'https://aws-proxy.herokuapp.com/proxy'
 const MAILGUN_DOMAIN = 'mg.thedebbiechen.com'
 
 const HEADERS = {
@@ -29,7 +29,7 @@ async function request (path, options = { headers: {} }) {
 }
 
 export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html }) {
-  return request('/mailgun/send', {
+  return request('/recaptcha/mailgun/send', {
     method: 'post',
     headers: {
       'recaptcha-token': token
@@ -55,7 +55,7 @@ export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html
 }
 
 export async function listBucket (bucketName) {
-  return request(`/bucket/${bucketName}/list`)
+  return request(`/nocaptcha/bucket/${bucketName}/list`)
     .then((res) => res.body)
     .catch((res) => {
       if (res instanceof Error) {
