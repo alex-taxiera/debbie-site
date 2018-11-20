@@ -56,7 +56,7 @@ export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html
 
 export async function listBucket (bucketName) {
   return request(`/nocaptcha/bucket/${bucketName}/list`)
-    .then((res) => res.body)
+    .then((res) => console.log('res', res) || res.body)
     .catch((res) => {
       if (res instanceof Error) {
         throw res

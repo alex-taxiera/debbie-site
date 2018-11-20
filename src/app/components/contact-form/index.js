@@ -139,10 +139,10 @@ class ContactForm extends Component {
     } = this.state
 
     let [
-      email,
-      message,
       firstName,
-      lastName
+      lastName,
+      email,
+      message
     ] = Object.values(fields).map(({ value }) => value.trim())
 
     const canSubmit = token && !fieldErrors && !emailSent
