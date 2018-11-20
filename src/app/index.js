@@ -99,6 +99,9 @@ class App extends Component {
                   onClick={() => this.setState({ contactFormIsOpen: false })}
                 >
                   <SVG
+                    preloader={(
+                      <div>x</div>
+                    )}
                     src={crossIcon}
                     className='cross-icon'
                     alt='X'
