@@ -10,7 +10,6 @@ const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/debbie-carousel'
 export default async function render () {
   try {
     const images = await listBucket('debbie-carousel')
-    console.log('images', images)
 
     return (
       <Carousel
