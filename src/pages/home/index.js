@@ -3,8 +3,6 @@ import Carousel from 'nuka-carousel'
 
 import { listBucket } from '../../api'
 
-import './index.css'
-
 const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/debbie-carousel'
 
 export default async function render () {
@@ -13,7 +11,6 @@ export default async function render () {
 
     return (
       <Carousel
-        initialSlideHeight={400}
         autoGenerateStyleTag={false}
         transitionMode='fade'
         autoplay
@@ -26,7 +23,13 @@ export default async function render () {
         {
           images.map((name, index) => {
             return (
-              <img key={index} src={`${IMAGE_URL}/${name}`} alt='' />
+              <img
+                key={index}
+                src={`${IMAGE_URL}/${name}`}
+                alt=''
+                style={{ display: 'block', maxHeight: 400, margin: 'auto' }}
+                onLoad={index > 0 ? () => null : () => window.dispatchEvent(new Event('resize'))}
+              />
             )
           })
         }
