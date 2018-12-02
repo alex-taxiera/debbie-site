@@ -16,19 +16,19 @@ async function render () {
   const pages = {
     page1: {
       name: 'Home',
-      content: await home()
+      content: home()
     },
     page2: {
       name: 'About',
-      content: await about()
+      content: about()
     },
     page3: {
       name: 'Resume',
-      content: await resume()
+      content: resume()
     },
     page4: {
       name: 'Sample',
-      content: await sample()
+      content: sample()
     }
   }
   ReactDOM.render(
