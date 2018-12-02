@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Carousel from 'nuka-carousel'
 
 import { listBucket } from '../../api'
 
-const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/debbie-carousel'
+const S3_BUCKET = 'debbie-carousel'
+const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/' + S3_BUCKET
 
-export default function render () {
-  return (
-    <div>
+class Home extends Component {
+  state = {
+    images: null
+  }
+
+  componentWillMount = () => {
+    listBucket(S3_BUCKET)
+      .then((images) => this.setState({ images }))
+      .catch(console.error)
+  }
+
+  render = () => {
+    const {
+      images
+    } = this.state
+
+    return (
       <div>
-        some inspirational text
-      </div>
-      {async () => {
-        try {
-          const start = Date.now()
-          const images = await listBucket('debbie-carousel')
-          console.log(`request took ${Date.now() - start}ms!`)
-          return (
+        <div>
+          some inspirational text
+        </div>
+        {!images
+          ? null
+          : (
             <Carousel
               autoGenerateStyleTag={false}
               transitionMode='fade'
@@ -42,11 +55,10 @@ export default function render () {
               }
             </Carousel>
           )
-        } catch (error) {
-          return null
         }
-      }
-      }
-    </div>
-  )
+      </div>
+    )
+  }
 }
+
+export default Home
