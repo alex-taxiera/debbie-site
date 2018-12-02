@@ -55,8 +55,10 @@ export async function sendEmail ({ token, to, from, cc, bcc, subject, text, html
 }
 
 export async function listBucket (bucketName) {
+  const start = Date.now()
   return request(`/nocaptcha/bucket/${bucketName}/list`)
     .catch((res) => {
+      console.log(`request took ${Date.now() - start}ms!`)
       if (res instanceof Error) {
         throw res
       } else {
