@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Carousel from 'nuka-carousel'
 
 import { listBucket } from '../../api'
+import Spinner from '../../app/components/spinner'
 
 const S3_BUCKET = 'debbie-carousel'
 const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/' + S3_BUCKET
@@ -24,12 +25,13 @@ class Home extends Component {
 
     return (
       <div>
-        <div>
+        <div className='inspirations'>
           some inspirational text
         </div>
         {!images
-          ? null
-          : (
+          ? (
+            <Spinner color='rgba(100,100,100,0.2)' />
+          ) : (
             <Carousel
               autoGenerateStyleTag={false}
               transitionMode='fade'
