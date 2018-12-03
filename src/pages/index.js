@@ -1,11 +1,11 @@
-import home from './home'
-import about from './about'
-import resume from './resume'
-import sample from './sample'
+import Home from './home'
+import About from './about'
+import Resume from './resume'
+import Sample from './sample'
 
 export {
-  home,
-  about,
-  resume,
-  sample
+  Home,
+  About,
+  Resume,
+  Sample
 }

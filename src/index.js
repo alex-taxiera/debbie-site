@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom'
 import App from './app'
 
 import {
-  home,
-  about,
-  resume,
-  sample
+  Home,
+  About,
+  Resume,
+  Sample
 } from './pages'
 
 import './index.css'
@@ -16,19 +16,19 @@ async function render () {
   const pages = {
     page1: {
       name: 'Home',
-      content: await home()
+      content: (<Home />)
     },
     page2: {
       name: 'About',
-      content: await about()
+      content: (<About />)
     },
     page3: {
       name: 'Resume',
-      content: await resume()
+      content: (<Resume />)
     },
     page4: {
       name: 'Sample',
-      content: await sample()
+      content: (<Sample />)
     }
   }
   ReactDOM.render(
