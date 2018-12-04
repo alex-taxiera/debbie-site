@@ -12,7 +12,16 @@ export const fourPages = propTypes.shape({
   page4: pageShape
 })
 
+export const fivePages = propTypes.shape({
+  page1: pageShape,
+  page2: pageShape,
+  page3: pageShape,
+  page4: pageShape,
+  page5: pageShape
+})
+
 export default {
   pageShape,
-  fourPages
+  fourPages,
+  fivePages
 }

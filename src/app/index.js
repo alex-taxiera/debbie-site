@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import propTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
 
-import { fourPages } from './shapes'
+import { fivePages } from './shapes'
 
 import Menu from './components/menu'
 import PopUpModal from './components/pop-up-modal'
@@ -24,7 +24,7 @@ class App extends Component {
   static propTypes = {
     title: propTypes.string.isRequired,
     contact: propTypes.string,
-    pages: fourPages
+    pages: fivePages
   }
 
   componentWillMount = () => {
@@ -66,8 +66,11 @@ class App extends Component {
       <div className='container'>
         <div className='header'>
           <div id='banner'>
-            <div className='title white box'>
+            <div className='title white box' style={{ padding: '0.5em 1.2em' }}>
               {title}
+              <div className='sub-title'>
+                Bassoonist - Music Educator
+              </div>
             </div>
           </div>
         </div>

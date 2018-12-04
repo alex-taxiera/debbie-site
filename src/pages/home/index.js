@@ -4,6 +4,8 @@ import Carousel from 'nuka-carousel'
 import { listBucket } from '../../api'
 import Spinner from '../../app/components/spinner'
 
+import './index.css'
+
 const S3_BUCKET = 'debbie-carousel'
 const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/' + S3_BUCKET
 
@@ -26,7 +28,7 @@ class Home extends Component {
     return (
       <div>
         <div className='inspirations'>
-          some inspirational text
+          Passionate - Adaptive - Supportive - Enthusiastic
         </div>
         {!images
           ? (

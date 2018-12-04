@@ -54,22 +54,26 @@
 }
 
 #banner {
-  background-image: url('./assets/sheet-music.png');
+  /* background-image: url('./assets/sheet-music.png');
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
   margin: 2em auto;
-  padding: 1em 9em;
   display: inline-block;
 }
 
 .title {
   background: none;
   font-weight: 400;
-  font-size: 2em;
+  font-size: 3em;
   text-align: center;
   display: inline-block;
   padding: 0 0.5em;
   white-space: nowrap;
+}
+
+.sub-title {
+  font-size: 1rem;
+  font-style: italic;
 }
 
 .body {
@@ -196,10 +200,14 @@
     margin: 1em 0;
   }
   #banner {
-    padding: .5em 3.5em;
+    margin: 0;
   }
   .title {
+    font-size: 2em;
     padding: 0 0.2em;
+  }
+  .sub-title {
+    font-size: 0.7rem;
   }
   .body {
     width: 90%;
