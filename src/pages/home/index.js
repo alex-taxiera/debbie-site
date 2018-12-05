@@ -60,6 +60,15 @@ class Home extends Component {
             </Carousel>
           )
         }
+        <div className='philosophy'>
+          I believe that music should be enjoyed by everyone and anyone.
+          <br />
+          I want to help students learn and understand music so they can find ways they can enjoy music.
+          <br />
+          I believe that  music should be fun and enjoyable for those who partake in music.
+          <br />
+          As a musician I want to touch the heart and stir the emotions of those who listen to my performance.
+        </div>
       </div>
     )
   }
