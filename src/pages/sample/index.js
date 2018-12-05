@@ -10,7 +10,7 @@ const SPINNER_COLOR = 'rgba(100,100,100,0.2)'
 class Sample extends Component {
   render = () => {
     return (
-      <div>
+      <div className='sample-container'>
         <div className='schools'>
           <div className='pembroke'>
             <div className='description'>

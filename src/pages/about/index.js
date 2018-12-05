@@ -5,7 +5,7 @@ import './index.css'
 class About extends Component {
   render = () => {
     return (
-      <div>
+      <div className='about-container'>
         <div className='float-left text-right'>
           <img style={{ maxWidth: 240 }} src='/profile.jpg' alt='profile.jpg' />
         </div>
