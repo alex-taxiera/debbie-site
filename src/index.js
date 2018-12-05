@@ -16,19 +16,19 @@ async function render () {
   const pages = {
     page1: {
       name: 'Home',
-      content: (<Home />)
+      content: Home
     },
     page2: {
       name: 'About',
-      content: (<About />)
+      content: About
     },
     page3: {
       name: 'Resume',
-      content: (<Resume />)
+      content: Resume
     },
     page4: {
       name: 'Sample',
-      content: (<Sample />)
+      content: Sample
     }
   }
   ReactDOM.render(

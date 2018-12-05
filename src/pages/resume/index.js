@@ -1,8 +1,25 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 
 import './index.css'
 
 class Resume extends Component {
+  static propTypes = {
+    scrollTo: propTypes.object,
+  }
+
+  static defaultPropTypes = {
+    scrollIfHigherThan: 0
+  }
+
+  componentDidMount = () => {
+    const {
+      scrollTo
+    } = this.props
+
+    scrollTo && scrollTo.scrollIntoView()
+  }
+
   render = () => {
     return (
       <div>

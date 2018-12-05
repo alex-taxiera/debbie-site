@@ -2,7 +2,7 @@ import propTypes from 'prop-types'
 
 export const pageShape = propTypes.shape({
   name: propTypes.string,
-  content: propTypes.node
+  content: propTypes.func
 })
 
 export const fourPages = propTypes.shape({

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import Carousel from 'nuka-carousel'
 
 import { listBucket } from '../../api'
@@ -14,10 +15,26 @@ class Home extends Component {
     images: null
   }
 
+  static propTypes = {
+    scrollTo: propTypes.object
+  }
+
+  static defaultPropTypes = {
+    scrollIfHigherThan: 0
+  }
+
   componentWillMount = () => {
     listBucket(S3_BUCKET)
       .then((images) => this.setState({ images }))
       .catch(console.error)
+  }
+
+  componentDidMount = () => {
+    const {
+      scrollTo
+    } = this.props
+
+    scrollTo && scrollTo.scrollIntoView()
   }
 
   render = () => {
@@ -32,7 +49,9 @@ class Home extends Component {
         </div>
         {!images
           ? (
-            <Spinner color='rgba(100,100,100,0.2)' />
+            <div style={{ height: 294, paddingTop: 90 }}>
+              <Spinner color='rgba(100,100,100,0.2)' />
+            </div>
           ) : (
             <Carousel
               autoGenerateStyleTag={false}
@@ -51,7 +70,7 @@ class Home extends Component {
                       key={index}
                       src={`${IMAGE_URL}/${name}`}
                       alt=''
-                      style={{ display: 'block', maxHeight: 400, margin: 'auto' }}
+                      style={{ display: 'block', margin: 'auto' }}
                       onLoad={index > 0 ? () => null : () => window.dispatchEvent(new Event('resize'))}
                     />
                   )

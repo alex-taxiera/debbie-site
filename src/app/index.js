@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import propTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
 
-import { fivePages } from './shapes'
+import { fourPages } from './shapes'
 
 import Menu from './components/menu'
 import PopUpModal from './components/pop-up-modal'
@@ -18,13 +17,16 @@ class App extends Component {
   state = {
     error: null,
     currentPage: {},
-    contactFormIsOpen: false
+    offset: 0,
+    contactFormIsOpen: false,
+    bodyRef: null,
+    headerRef: null
   }
 
   static propTypes = {
     title: propTypes.string.isRequired,
     contact: propTypes.string,
-    pages: fivePages
+    pages: fourPages
   }
 
   componentWillMount = () => {
@@ -32,24 +34,23 @@ class App extends Component {
     this.setState({ currentPage: pages.page1 })
   }
 
-  bringToTop = () => {
-    const body = ReactDOM.findDOMNode(this.refs.body)
-    if (window.pageYOffset > 120) {
-      body.scrollIntoView()
-    }
+  componentDidMount = () => {
+    this.setState({ bodyRef: this.refs.body, headerRef: this.refs.header })
   }
 
   onMenuChange = (pageKey) => {
     const { pages } = this.props
-    this.setState({ currentPage: pages[pageKey] })
-    this.bringToTop()
+    this.setState({ currentPage: pages[pageKey], offset: window.pageYOffset })
   }
 
   render = () => {
     const {
       error,
       currentPage,
-      contactFormIsOpen
+      contactFormIsOpen,
+      bodyRef,
+      headerRef,
+      offset
     } = this.state
 
     const {
@@ -64,7 +65,7 @@ class App extends Component {
 
     return (
       <div className='container'>
-        <div className='header'>
+        <div className='header' ref='header'>
           <div id='banner'>
             <div className='title white box' style={{ padding: '0.5em 1.2em' }}>
               {title}
@@ -80,7 +81,9 @@ class App extends Component {
             onChange={this.onMenuChange}
           />
           <div className='content'>
-            {currentPage.content}
+            <currentPage.content
+              scrollTo={offset > (headerRef ? headerRef.clientHeight : 0) ? bodyRef : null}
+            />
           </div>
         </div>
         <div className='footer'>

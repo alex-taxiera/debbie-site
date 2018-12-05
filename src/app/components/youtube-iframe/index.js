@@ -16,7 +16,6 @@ class YoutubeIframe extends Component {
   }
 
   onLoad = () => {
-    console.log('loaded')
     const {
       onLoad
     } = this.props

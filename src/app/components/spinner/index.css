@@ -1,5 +1,8 @@
-.loader {
+.spinner-container {
   font-size: 20px;
+}
+
+.loader {
   margin: 100px auto;
   width: 1em;
   height: 1em;
