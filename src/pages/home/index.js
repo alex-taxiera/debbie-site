@@ -49,7 +49,7 @@ class Home extends Component {
         </div>
         {!images
           ? (
-            <div style={{ height: 294, paddingTop: 90 }}>
+            <div className='carousel-placeholder'>
               <Spinner color='rgba(100,100,100,0.2)' />
             </div>
           ) : (

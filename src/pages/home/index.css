@@ -5,6 +5,11 @@
   padding-bottom: 0.5em;
 }
 
+.carousel-placeholder {
+  height: 294px;
+  padding-top: 90px;
+}
+
 .slider-slide {
   text-align: center;
 }
@@ -28,7 +33,11 @@
   .inspirations {
     font-size: 1.5em;
   }
+  .carousel-placeholder {
+    height: 260px;
+    padding-top: 40px;
+  }
   .slider-slide img {
-    max-height: 200px;
+    max-height: 300px;
   }
 }
