@@ -226,6 +226,7 @@
   /* MENU COMPONENT */
   .menu {
     position: sticky;
+    z-index: 1;
     top: 0;
     width: 100%;
     background-color: #FFF;
