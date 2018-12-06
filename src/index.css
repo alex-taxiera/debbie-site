@@ -19,13 +19,29 @@ textarea {
 a,
 a:hover,
 a:focus {
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
   text-decoration: none;
   color: inherit;
 }
 
 a:hover,
 a:focus {
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
   color: #84240C;
+}
+
+a svg {
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
+}
+
+a:hover svg,
+a:focus svg {
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
+  fill: #84240C;
 }
 
 code {

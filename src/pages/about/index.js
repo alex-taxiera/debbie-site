@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 
+import Spinner from '../../app/components/spinner'
+
 import './index.css'
 
 class About extends Component {
@@ -52,7 +54,9 @@ class About extends Component {
 
     return (
       <div className='about-container'>
-        <div style={isLoading ? { height: 1000 } : { display: 'none' }} />
+        <div style={isLoading ? { height: 1000 } : { display: 'none' }}>
+          <Spinner color='rgba(100,100,100,0.2)' />
+        </div>
         <div style={isLoading ? { display: 'none' } : null}>
           <div className='float-left text-right'>
             <img

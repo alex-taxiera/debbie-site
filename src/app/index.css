@@ -50,14 +50,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1em auto;
+  margin: 2.2em auto;
 }
 
 #banner {
   /* background-image: url('./assets/sheet-music.png');
   background-position: center;
   background-size: cover; */
-  margin: 2em auto;
   display: inline-block;
 }
 
@@ -198,9 +197,6 @@
 @media (max-width: 820px) {
   .header {
     margin: 1em 0;
-  }
-  #banner {
-    margin: 0;
   }
   .title {
     font-size: 2em;

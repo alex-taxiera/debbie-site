@@ -21,7 +21,6 @@
   max-width: 60%;
 }
 
-
 .video {
   width: 45%;
   margin: auto;
@@ -30,6 +29,33 @@
 .padded-half {
   margin: 0 2.5% 5%;
   display: inline-block;
+}
+
+.half svg {
+  width: 50%;
+}
+
+.doc-links {
+  margin-bottom: 1em;
+}
+
+.doc-links .doc-link {
+  display: inline-block;
+  text-align: center;
+}
+
+.doc-links.two .doc-link {
+  width: 50%;
+}
+
+.doc-links.four .doc-link {
+  width: 25%;
+}
+
+.doc-icon svg {
+  width: 60px;
+  padding: 0.5em;
+  margin-top: 0;
 }
 
 @media (max-width: 1000px) {
@@ -50,5 +76,11 @@
   }
   .videos .video {
     margin-top: 1em;
+  }
+}
+
+@media (max-width: 500px) {
+  .doc-links.four .doc-link {
+    width: 50%;
   }
 }

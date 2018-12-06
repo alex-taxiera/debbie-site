@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
+import SVG from 'react-inlinesvg'
 
 import YoutubeIframe from '../../app/components/youtube-iframe'
 import Spinner from '../../app/components/spinner'
+
+import docIcon from '../../app/assets/doc.svg'
 
 import './index.css'
 
@@ -61,7 +64,9 @@ class Sample extends Component {
 
     return (
       <div className='sample-container'>
-        <div style={isLoading ? { height: 1000 } : { display: 'none' }} />
+        <div style={isLoading ? { height: 1000 } : { display: 'none' }}>
+          <Spinner color='rgba(100,100,100,0.2)' />
+        </div>
         <div style={isLoading ? { display: 'none' } : null}>
           <div className='schools'>
             <div className='pembroke'>
@@ -86,6 +91,35 @@ class Sample extends Component {
                 <p className='clear-both'>
                   I completed my secondary placement at Pembroke High School in Pembroke, Massachusetts with Mr. Glass as my supervising practitioner. I was also very fortunate to have the opportunity to work with and learn from both Mrs. Chapman and Mr. Tarbox, the Choral and orchestral directors at the school. At this placement I worked with the Freshmen band, Concert band, Wind ensemble, and string orchestra. I observed and taught bits and pieces of a Guitar lab, as well as concert choir, and took over a Piano lab where I taught class to beginning pianists. After school I would work with students privately on their instruments when requested and would assist in after school groups such as men’s choir, women’s choir, Jazz band and rehearsals for the school musical.
                 </p>
+              </div>
+              <h4>Lesson Plans</h4>
+              <div className='doc-links two'>
+                <div className='doc-link'>
+                  <a href='/highschool1.pdf' target='_blank'>
+                    <div>
+                      <SVG
+                        preloader={(<Spinner style={SPINNER_STYLE} />)}
+                        src={docIcon}
+                        className='doc-icon'
+                        alt='doc'
+                      />
+                      <div>Piano Lab</div>
+                    </div>
+                  </a>
+                </div>
+                <div className='doc-link'>
+                  <a href='/highschool2.pdf' target='_blank'>
+                    <div>
+                      <SVG
+                        preloader={(<Spinner style={SPINNER_STYLE} />)}
+                        src={docIcon}
+                        className='doc-icon'
+                        alt='doc'
+                      />
+                      <div>Freshman Band</div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
             <div className='riverdale-curran'>
@@ -113,6 +147,61 @@ class Sample extends Component {
                 <p className='clear-both'>
                   I completed my elementary placement at the Early Childhood Education Center, and Riverdale Elementary school under the supervision of Mrs. Kirby in Dedham, Massachusetts. During my time in this placement I worked with preschoolers and kindergarteners at the ECEC and grades 1-5 at Riverdale where I utilized the music learning theory and the Gordon approach. I also directed a piece in both the 5th grade and 4th grade chorus. I created and taught a unit plan on mexican music where the 4th graders learned a few songs in the mexican language and a game from Ecuador that was also in spanish. They performed it in their winter concert.
                 </p>
+              </div>
+              <h4>Lesson Plans</h4>
+              <div className='doc-links four'>
+                <div className='doc-link'>
+                  <a href='/elementary1.pdf' target='_blank'>
+                    <div>
+                      <SVG
+                        preloader={(<Spinner style={SPINNER_STYLE} />)}
+                        src={docIcon}
+                        className='doc-icon'
+                        alt='doc'
+                      />
+                      <div>Kindergarten</div>
+                    </div>
+                  </a>
+                </div>
+                <div className='doc-link'>
+                  <a href='/elementary2.pdf' target='_blank'>
+                    <div>
+                      <SVG
+                        preloader={(<Spinner style={SPINNER_STYLE} />)}
+                        src={docIcon}
+                        className='doc-icon'
+                        alt='doc'
+                      />
+                      <div>Grade 2</div>
+                    </div>
+                  </a>
+                </div>
+                <div className='doc-link'>
+                  <a href='/elementary3.pdf' target='_blank'>
+                    <div>
+                      <SVG
+                        preloader={(<Spinner style={SPINNER_STYLE} />)}
+                        src={docIcon}
+                        className='doc-icon'
+                        alt='doc'
+                      />
+                      <div>Kindergarten</div>
+                    </div>
+                  </a>
+                </div>
+                <div className='doc-link'>
+                  <a href='/elementary4.pdf' target='_blank'>
+                    <div>
+                      <SVG
+                        preloader={(<Spinner style={SPINNER_STYLE} />)}
+                        src={docIcon}
+                        className='doc-icon'
+                        alt='doc'
+                      />
+                      <div>Grade 4</div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
