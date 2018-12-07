@@ -12,8 +12,7 @@ const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/' + S3_BUCKET
 
 class Home extends Component {
   state = {
-    images: null,
-    carouselLoading: true
+    images: null
   }
 
   static propTypes = {
@@ -40,8 +39,7 @@ class Home extends Component {
 
   render = () => {
     const {
-      images,
-      carouselLoading
+      images
     } = this.state
 
     return (
@@ -50,40 +48,38 @@ class Home extends Component {
           <div>Music Educators are</div>
           Passionate - Adaptive - Supportive - Enthusiastic
         </div>
-        <div className='carousel-placeholder' style={carouselLoading ? null : { display: 'none' }}>
-          <Spinner color='rgba(100,100,100,0.2)' />
-        </div>
-        <div style={carouselLoading ? { display: 'none' } : null}>
-          <Carousel
-            autoGenerateStyleTag={false}
-            transitionMode='fade'
-            autoplay
-            autoplayInterval={10 * 1000}
-            pauseOnHover
-            swiping
-            wrapAround
-            renderBottomCenterControls={() => null}
-          >
-            {
-              images
-                ? images.map((name, index) => {
+        {!images
+          ? (
+            <div className='carousel-placeholder'>
+              <Spinner color='rgba(100,100,100,0.2)' />
+            </div>
+          ) : (
+            <Carousel
+              autoGenerateStyleTag={false}
+              transitionMode='fade'
+              autoplay
+              autoplayInterval={10 * 1000}
+              pauseOnHover
+              swiping
+              wrapAround
+              renderBottomCenterControls={() => null}
+            >
+              {
+                images.map((name, index) => {
                   return (
                     <img
                       key={index}
                       src={`${IMAGE_URL}/${name}`}
                       alt=''
                       style={{ display: 'block', margin: 'auto' }}
-                      onLoad={index > 0 ? () => null : () => {
-                        this.setState({ carouselLoading: false })
-                        window.dispatchEvent(new Event('resize'))
-                      }}
+                      onLoad={index > 0 ? () => null : () => window.dispatchEvent(new Event('resize'))}
                     />
                   )
                 })
-                : null
-            }
-          </Carousel>
-        </div>
+              }
+            </Carousel>
+          )
+        }
         <div className='philosophy'>
           I believe that music should be enjoyed by everyone and anyone.
           <br />
