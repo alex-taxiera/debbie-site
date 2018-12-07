@@ -12,7 +12,8 @@ const IMAGE_URL = 'https://s3.us-east-2.amazonaws.com/' + S3_BUCKET
 
 class Home extends Component {
   state = {
-    images: null
+    images: null,
+    carouselLoading: true
   }
 
   static propTypes = {
@@ -39,7 +40,8 @@ class Home extends Component {
 
   render = () => {
     const {
-      images
+      images,
+      carouselLoading
     } = this.state
 
     return (
@@ -48,7 +50,7 @@ class Home extends Component {
           <div>Music Educators are</div>
           Passionate - Adaptive - Supportive - Enthusiastic
         </div>
-        {!images
+        {carouselLoading
           ? (
             <div className='carousel-placeholder'>
               <Spinner color='rgba(100,100,100,0.2)' />
@@ -72,7 +74,10 @@ class Home extends Component {
                       src={`${IMAGE_URL}/${name}`}
                       alt=''
                       style={{ display: 'block', margin: 'auto' }}
-                      onLoad={index > 0 ? () => null : () => window.dispatchEvent(new Event('resize'))}
+                      onLoad={index > 0 ? () => null : () => {
+                        this.setState({ carouselLoading: false })
+                        window.dispatchEvent(new Event('resize'))
+                      }}
                     />
                   )
                 })
