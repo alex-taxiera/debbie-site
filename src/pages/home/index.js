@@ -45,6 +45,7 @@ class Home extends Component {
     return (
       <div>
         <div className='inspirations'>
+          <div>Music Educators are</div>
           Passionate - Adaptive - Supportive - Enthusiastic
         </div>
         {!images

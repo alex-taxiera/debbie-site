@@ -162,8 +162,12 @@
   padding: 0 0 3px;
   display: inline-block;
   cursor: pointer;
-  -webkit-transition: all 0.125s ease;
-  transition: all 0.125s ease;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease;
+  -webkit-transition-duration: 0.125s;
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 0.125s;
 }
 
 .menu .option:hover,

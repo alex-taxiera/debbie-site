@@ -5,6 +5,11 @@
   padding-bottom: 0.5em;
 }
 
+.inspirations div {
+  font-size: 0.8em;
+  margin-bottom: 0.3em;
+}
+
 .carousel-placeholder {
   height: 294px;
   padding-top: 90px;
