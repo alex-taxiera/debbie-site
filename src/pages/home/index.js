@@ -74,10 +74,7 @@ class Home extends Component {
                       src={`${IMAGE_URL}/${name}`}
                       alt=''
                       style={{ display: 'block', margin: 'auto' }}
-                      onLoad={index > 0 ? () => null : () => {
-                        this.setState({ carouselLoading: false })
-                        window.dispatchEvent(new Event('resize'))
-                      }}
+                      onLoad={index > 0 ? () => null : () => window.dispatchEvent(new Event('resize'))}
                     />
                   )
                 })
