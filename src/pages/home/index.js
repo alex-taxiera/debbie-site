@@ -65,20 +65,22 @@ class Home extends Component {
             renderBottomCenterControls={() => null}
           >
             {
-              images.map((name, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={`${IMAGE_URL}/${name}`}
-                    alt=''
-                    style={{ display: 'block', margin: 'auto' }}
-                    onLoad={index > 0 ? () => null : () => {
-                      this.setState({ carouselLoading: false })
-                      window.dispatchEvent(new Event('resize'))
-                    }}
-                  />
-                )
-              })
+              images
+                ? images.map((name, index) => {
+                  return (
+                    <img
+                      key={index}
+                      src={`${IMAGE_URL}/${name}`}
+                      alt=''
+                      style={{ display: 'block', margin: 'auto' }}
+                      onLoad={index > 0 ? () => null : () => {
+                        this.setState({ carouselLoading: false })
+                        window.dispatchEvent(new Event('resize'))
+                      }}
+                    />
+                  )
+                })
+                : null
             }
           </Carousel>
         </div>
