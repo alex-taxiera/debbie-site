@@ -6,9 +6,7 @@ import SEO from '../components/seo'
 import Header from '../components/header'
 import Footer from '../components/footer'
 
-import { boxPadding } from '../style/_variables.scss'
-
-const Layout = ({ children, seo: { title, description, lang, meta, keywords } }) => (
+const Layout = ({ children, seo }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -21,14 +19,13 @@ const Layout = ({ children, seo: { title, description, lang, meta, keywords } })
     `}
     render={(data) => (
       <>
-        <SEO title={title} description={description} lang={lang} meta={meta} keywords={keywords} />
+        <SEO {...seo} />
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className="page-wrapper">
           <main
-            className="box"
+            className="box padded"
             style={{
-              background: `white`,
-              padding: boxPadding
+              background: `white`
             }}
           >{children}</main>
         </div>
@@ -40,7 +37,7 @@ const Layout = ({ children, seo: { title, description, lang, meta, keywords } })
 
 Layout.defaultProps = {
   seo: {
-    lang: `en`,
+    lang: 'en',
     meta: [],
     keywords: []
   }
