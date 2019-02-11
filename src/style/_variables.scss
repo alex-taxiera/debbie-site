@@ -1,0 +1,27 @@
+$standard-margin: 1.45rem;
+
+$box-padding: 1rem;
+
+$primary-color: #E7CFB4;
+
+$border-shadow: 0 0 12px rgba(192, 192, 192, 0.6);
+
+%block {
+  display: block;
+}
+
+%hide {
+  display: none;
+}
+
+%clear-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+:export {
+  primaryColor: $primary-color;
+  standardMargin: $standard-margin;
+  boxPadding: $box-padding;
+  borderShadow: $border-shadow;
+}
