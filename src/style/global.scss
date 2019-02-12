@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Muli|Tangerine');
+
 @import 'variables';
 
 .page-wrapper {
@@ -11,13 +13,27 @@
   -webkit-box-shadow: $border-shadow;
 }
 
-.box.padded {
+.box .padded {
+  @extend %clear-margin-padding;
   padding: $box-padding;
 }
 
 .plain-link {
+  @extend %hover-transition;
   color: inherit;
   text-decoration: none;
+}
+
+.plain-link.hover-decoration:hover,
+.plain-link.hover-decoration:active {
+  @extend %hover-transition;
+  color: $red-wood;
+}
+
+.left-inline-image {
+  float: left;
+  margin: 0.55rem;
+  margin-left: 0;
 }
 
 @media (max-width: 960px) {
@@ -26,14 +42,28 @@
     -webkit-box-shadow: initial;
             box-shadow: initial;
   }
+}
 
-  .site-header .hamburger {
-    display: block;
+@media (max-width: 550px) {
+  .left-inline-image {
+    float: none;
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
   }
+}
 
-  .site-header .nav-bar {
-    display: none;
-  }
+main {
+  background: $content-background-color;
+}
+
+main p {
+  text-align: justify;
+}
+
+footer {
+  margin-top: calc(#{$standard-margin} / 2);
+  margin-bottom: calc(#{$standard-margin} / 2);
 }
 
 html {
@@ -204,10 +234,10 @@ textarea {
   box-sizing: inherit;
 }
 body {
-  background: $primary-color;
+  background: $nude;
   margin: 0;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: $font-stack;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -227,8 +257,7 @@ img {
   @extend %clear-margin-padding;
   margin-bottom: $standard-margin;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: $font-stack;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   line-height: 1.1;

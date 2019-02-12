@@ -1,23 +1,75 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import Layout from '../containers/layout'
-import '../graphql/fluid-images'
+import '../graphql/images'
 
-const IndexPage = (props) => (
-  <Layout seo={{
-    title: 'Home',
-    keywords: [`gatsby`, `application`, `react`]
-  }}>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Img fluid={props.data.gatsbyAstronaut.childImageSharp.fluid} />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+import './style/index.scss'
+
+const IndexPage = () => (
+  <StaticQuery
+    query={graphql`
+      query {
+        debbiePlaying: file(relativePath: { eq: "debbie-playing.png" }) {
+          ...fluid960
+        }
+      }
+    `}
+    render={(data) => (
+      <Layout seo={{
+        title: 'Home',
+        keywords: [`bassoon`, `bassoonist`, `music`, `performance`, `music educator`]
+      }}>
+        <div className="padded inspirations" style={{ paddingLeft: '0', paddingRight: '0' }}>
+          <div>Music Educators are</div>
+          Passionate - Adaptive - Supportive - Enthusiastic
+        </div>
+        <Img fluid={data.debbiePlaying.childImageSharp.fluid} />
+        {/* {!images
+          ? (
+            <div className='carousel-placeholder'>
+              <Spinner color='rgba(100,100,100,0.2)' />
+            </div>
+          ) : (
+            <Carousel
+              autoGenerateStyleTag={false}
+              transitionMode='fade'
+              autoplay
+              autoplayInterval={10 * 1000}
+              pauseOnHover
+              swiping
+              wrapAround
+              renderBottomCenterControls={() => null}
+            >
+              {
+                images.map((name, index) => {
+                  return (
+                    <img
+                      key={index}
+                      src={`${IMAGE_URL}/${name}`}
+                      alt=''
+                      style={{ display: 'block', margin: 'auto' }}
+                      onLoad={index > 0 ? () => null : () => window.dispatchEvent(new Event('resize'))}
+                    />
+                  )
+                })
+              }
+            </Carousel>
+          )} */
+        }
+        <div className="padded" style={{ textAlign: 'center' }}>
+          I believe that music should be enjoyed by everyone and anyone.
+          <br />
+          I want to help students learn and understand music so they can find ways they can enjoy music.
+          <br />
+          I believe that  music should be fun and enjoyable for those who partake in music.
+          <br />
+          As a musician I want to touch the heart and stir the emotions of those who listen to my performance.
+        </div>
+      </Layout>
+    )}
+  />
 )
 
 export const frontmatter = {
@@ -25,13 +77,5 @@ export const frontmatter = {
   path: '/',
   navPosition: 0
 }
-
-export const pageQuery = graphql`
-  query {
-    gatsbyAstronaut: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-      ...fluid960
-    }
-  }
-`
 
 export default IndexPage

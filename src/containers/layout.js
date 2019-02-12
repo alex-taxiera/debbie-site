@@ -22,12 +22,9 @@ const Layout = ({ children, seo }) => (
         <SEO {...seo} />
         <Header siteTitle={data.site.siteMetadata.title} />
         <div className="page-wrapper">
-          <main
-            className="box padded"
-            style={{
-              background: `white`
-            }}
-          >{children}</main>
+          <main className="box">
+            {children}
+          </main>
         </div>
         <Footer />
       </>

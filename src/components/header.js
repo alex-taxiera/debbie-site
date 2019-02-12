@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql, Link } from 'gatsby'
 
-import '../style/header.scss'
+import './style/header.scss'
 
 const Header = ({ siteTitle }) => (
   <StaticQuery
@@ -52,7 +52,7 @@ const Header = ({ siteTitle }) => (
               to="/"
               className="plain-link"
               style={{
-                color: `black`
+                color: 'black'
               }}
             >
               {siteTitle}
@@ -76,6 +76,7 @@ const Header = ({ siteTitle }) => (
                 <Link
                   to={path}
                   className="plain-link"
+                  activeClassName="plain-link active"
                 >
                   {title}
                 </Link>

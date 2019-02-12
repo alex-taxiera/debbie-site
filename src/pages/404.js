@@ -14,8 +14,8 @@ const NotFoundPage = () => (
     >
       <h1 style={{
         fontSize: `20vw`,
-        color: `#825d4e`,
-        background: `-webkit-linear-gradient(#825d4e, #E7CFB4)`,
+        color: `#825D4E`,
+        background: `-webkit-linear-gradient(#825D4E, #84240C)`,
         WebkitBackgroundClip: `text`,
         WebkitTextFillColor: `transparent`
       }}>404</h1>
