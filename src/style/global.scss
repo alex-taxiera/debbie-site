@@ -8,9 +8,8 @@
 }
 
 .box {
+  @extend %shadow;
   border-radius: 3px;
-  box-shadow: $border-shadow;
-  -webkit-box-shadow: $border-shadow;
 }
 
 .box .padded {
@@ -70,7 +69,7 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font: 112.5%/1.45em georgia, serif;
+  font-size: 19px;
   box-sizing: border-box;
   overflow-y: scroll;
 }
@@ -245,6 +244,8 @@ body {
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 img {
   border-style: none;

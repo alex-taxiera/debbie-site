@@ -3,6 +3,9 @@
 $nav-padding: 0.55rem;
 
 .site-header {
+  @extend %shadow;
+  background: $bassoon;
+  color: white;
   margin-bottom: calc(#{$standard-margin} * 2);
   position: -webkit-sticky;
   position: sticky;
@@ -32,7 +35,7 @@ $nav-padding: 0.55rem;
 
 .site-header .nav-bar .plain-link.active {
   font-weight: bold;
-  color: $red-wood;
+  color: $nude;
 }
 
 @media (max-width: 960px) {

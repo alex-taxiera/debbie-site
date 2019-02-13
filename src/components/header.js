@@ -23,18 +23,8 @@ const Header = ({ siteTitle }) => (
       }
     `}
     render={(data) => (
-      <header
-        className="site-header"
-        style={{
-          background: `white`,
-          borderBottom: `1px #606671`,
-          WebkitBoxShadow: `0 0 12px rgba(192, 192, 192, 0.6)`,
-          boxShadow: `0 0 12px rgba(192, 192, 192, 0.6)`
-        }}
-      >
-        <div
-          className="page-wrapper title"
-        >
+      <header className="site-header">
+        <div className="page-wrapper title">
           <div
             className="hamburger"
             style={{
@@ -51,9 +41,6 @@ const Header = ({ siteTitle }) => (
             <Link
               to="/"
               className="plain-link"
-              style={{
-                color: 'black'
-              }}
             >
               {siteTitle}
             </Link>
