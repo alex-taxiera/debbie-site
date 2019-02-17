@@ -1,12 +1,11 @@
 import React from 'react'
 
-import Layout from '../containers/layout'
-
-import './style/resume.scss'
+import Layout from 'containers/layout'
+import 'styles/resume.scss'
 
 const ResumePage = () => (
-  <Layout seo={{ title: 'Resume' }}>
-    <div className="resume-summary" style={{ margin: 'auto', padding: '1rem', paddingTop: '2.9em' }}>
+  <Layout seo={{ title: frontmatter.title }}>
+    <div className="resume-summary">
       <div>
         <h2>Education</h2>
         <div className="details">
@@ -50,7 +49,7 @@ const ResumePage = () => (
         </div>
       </div>
     </div>
-    <div className="padded" style={{ textAlign: 'center', paddingBottom: '2.9em' }}>
+    <div className="padded" style={{ textAlign: 'center' }}>
       <a
         className="plain-link hover-decoration"
         href="/resume.pdf"

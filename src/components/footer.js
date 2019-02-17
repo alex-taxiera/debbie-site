@@ -5,7 +5,7 @@ const Footer = () => (
     <div
       className="page-wrapper"
       style={{
-        textAlign: `center`
+        textAlign: 'center'
       }}
     >
       Contact Me
