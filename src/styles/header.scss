@@ -7,7 +7,7 @@
   margin-bottom: calc(#{$standard-margin} * 2);
   position: -webkit-sticky;
   position: sticky;
-  top: -62px; /* exact height of (title - .nav-bar padding-bottom) */
+  top: -57.44px; /* exact height of (.site-header .title) */
   z-index: 10;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .site-header .title {
-  padding: $nav-padding $standard-margin;
+  padding: $nav-padding $standard-margin 0;
 }
 
 .site-header .title h1 {
