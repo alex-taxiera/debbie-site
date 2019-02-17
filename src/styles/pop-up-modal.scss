@@ -1,0 +1,36 @@
+.ReactModal__Content {
+  cursor: default;
+  transition: opacity 180ms ease-out;
+  opacity: 0;
+}
+
+.ReactModal__Content:focus {
+  outline: none;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  transition: background 180ms ease-out;
+  z-index: 20;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ReactModal__Overlay--after-open {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.ReactModal__Overlay--before-close {
+  background: none;
+}

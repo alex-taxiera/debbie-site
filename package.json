@@ -2,32 +2,34 @@
   "name": "debbie-site",
   "version": "0.1.0",
   "dependencies": {
-    "gatsby": "^2.0.118",
+    "gatsby": "^2.1.0",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-manifest": "^2.0.17",
     "gatsby-plugin-offline": "^2.0.23",
     "gatsby-plugin-react-helmet": "^3.0.6",
+    "gatsby-plugin-react-svg": "^2.0.0-beta1",
     "gatsby-plugin-sass": "^2.0.10",
     "gatsby-plugin-sharp": "^2.0.20",
     "gatsby-source-filesystem": "^2.0.20",
     "gatsby-transformer-javascript-frontmatter": "^2.0.8",
     "gatsby-transformer-sharp": "^2.1.13",
+    "hoist-non-react-statics": "^3.3.0",
+    "lodash.throttle": "^4.1.1",
     "node-sass": "^4.11.0",
-    "nuka-carousel": "^4.4.7",
-    "prop-types": "^15.7.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "nuka-carousel": "^4.4.8",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "react-helmet": "^5.2.0",
-    "react-inlinesvg": "^0.8.4",
     "react-modal": "^3.8.1",
     "react-recaptcha": "^2.3.10"
   },
   "scripts": {
-    "start": "npm run build && npm run serve",
+    "start": "gatsby serve",
     "dev": "gatsby develop",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "build": "gatsby build",
-    "serve": "gatsby serve"
+    "build-start": "npm run build && npm start",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
   },
   "browserslist": [
     ">0.2%",
@@ -36,7 +38,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.14.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-node": "^8.0.1",

@@ -1,0 +1,39 @@
+@import 'variables';
+
+.close-icon {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: $standard-margin;
+  right: $standard-margin;
+  pointer-events: none;
+}
+
+.close-icon svg {
+  position: absolute;
+  top: 0;
+}
+
+.mobile-nav .hamburger {
+  height: 100%;
+  width: 100%;
+}
+
+.mobile-nav-list {
+  width: 100vw;
+}
+
+.mobile-nav-list .item {
+  font-size: 2rem;
+  text-align: center;
+  color: #FFF;
+}
+
+.mobile-nav-list .plain-link div {
+  padding: $half-standard-margin 0;
+}
+
+.mobile-nav-list .plain-link.active {
+  font-weight: bold;
+  color: $nude;
+}

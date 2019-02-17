@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
-import SEO from '../components/seo'
-import Header from '../components/header'
-import Footer from '../components/footer'
+import Header from 'containers/header'
+import SEO from 'components/seo'
+import Footer from 'components/footer'
 
 const Layout = ({ children, seo }) => (
   <StaticQuery
@@ -20,7 +20,10 @@ const Layout = ({ children, seo }) => (
     render={(data) => (
       <>
         <SEO {...seo} />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          currentPage={seo.title}
+        />
         <div className="page-wrapper">
           <main className="box">
             {children}

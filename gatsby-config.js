@@ -27,17 +27,23 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Debbie Chen - Bassoonist`,
+        short_name: `Debbie Chen`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#E6CAA3`,
+        theme_color: `#5F2B1B`,
         display: `minimal-ui`,
-        icon: `src/images/favicon.png` // This path is relativeto the root of the site .
+        icon: `src/images/favicon.png`
+      }
+    },
+    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
       }
     }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
   ]
 }
