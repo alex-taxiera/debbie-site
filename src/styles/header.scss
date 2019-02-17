@@ -43,4 +43,10 @@
   .site-header .title {
     padding-bottom: $nav-padding;
   }
+
+  .site-header .title h1 {
+    flex-grow: 1;
+    padding-left: $standard-margin;
+    text-align: center;
+  }
 }
