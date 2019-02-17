@@ -1,9 +1,9 @@
 import { graphql } from 'gatsby'
 
-export const fluid960 = graphql`
-  fragment fluid960 on File {
+export const fluid1024 = graphql`
+  fragment fluid1024 on File {
     childImageSharp {
-      fluid(maxWidth: 960, quality: 100) {
+      fluid(maxWidth: 1024, quality: 100) {
         ...GatsbyImageSharpFluid
       }
     }
@@ -24,6 +24,16 @@ export const fixed240 = graphql`
   fragment fixed240 on File {
     childImageSharp {
       fixed(width: 240, quality: 100) {
+        ...GatsbyImageSharpFixed
+      }
+    }
+  }
+`
+
+export const fixed480 = graphql`
+  fragment fixed480 on File {
+    childImageSharp {
+      fixed(width: 480, quality: 100) {
         ...GatsbyImageSharpFixed
       }
     }
