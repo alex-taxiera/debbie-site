@@ -2,28 +2,26 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
-import Layout from '../containers/layout'
-import '../graphql/images'
-
-import './style/index.scss'
+import Layout from 'containers/layout'
+import Inspo from 'assets/inspo.svg'
+import 'graphql/images'
 
 const IndexPage = () => (
   <StaticQuery
     query={graphql`
       query {
         debbiePlaying: file(relativePath: { eq: "debbie-playing.png" }) {
-          ...fluid960
+          ...fluid1024
         }
       }
     `}
     render={(data) => (
       <Layout seo={{
-        title: 'Home',
-        keywords: [`bassoon`, `bassoonist`, `music`, `performance`, `music educator`]
+        title: frontmatter.title,
+        keywords: ['bassoon', 'bassoonist', 'music', 'performance', 'music educator']
       }}>
-        <div className="padded inspirations" style={{ paddingLeft: '0', paddingRight: '0' }}>
-          <div>Music Educators are</div>
-          Passionate - Adaptive - Supportive - Enthusiastic
+        <div id="fancy-text" className="padded">
+          <Inspo />
         </div>
         <Img fluid={data.debbiePlaying.childImageSharp.fluid} />
         {/* {!images
@@ -58,14 +56,16 @@ const IndexPage = () => (
             </Carousel>
           )} */
         }
-        <div className="padded" style={{ textAlign: 'center' }}>
-          I believe that music should be enjoyed by everyone and anyone.
-          <br />
-          I want to help students learn and understand music so they can find ways they can enjoy music.
-          <br />
-          I believe that  music should be fun and enjoyable for those who partake in music.
-          <br />
-          As a musician I want to touch the heart and stir the emotions of those who listen to my performance.
+        <div className="padded">
+          <p className="with-top" style={{ textAlign: 'center', marginBottom: 0 }}>
+            I believe that music should be enjoyed by everyone and anyone.
+            <br />
+            I want to help students learn and understand music so they can find ways they can enjoy music.
+            <br />
+            I believe that  music should be fun and enjoyable for those who partake in music.
+            <br />
+            As a musician I want to touch the heart and stir the emotions of those who listen to my performance.
+          </p>
         </div>
       </Layout>
     )}
