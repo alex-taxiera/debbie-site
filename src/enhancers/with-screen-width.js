@@ -9,10 +9,13 @@ function withScreenWidth (WrappedComponent) {
       screenWidth: null
     }
 
-    componentWillMount () {
+    onResize = throttle(() => {
       this.setState({
         screenWidth: window.innerWidth
       })
+    }, 16)
+
+    componentWillMount () {
       if (!this.onResize) {
         this.onResize = throttle(() => {
           this.setState({
@@ -23,6 +26,9 @@ function withScreenWidth (WrappedComponent) {
     }
 
     componentDidMount () {
+      this.setState({
+        screenWidth: window.innerWidth
+      })
       window.addEventListener('resize', this.onResize)
     }
 
