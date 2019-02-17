@@ -39,4 +39,8 @@
   .site-header .page-wrapper {
     justify-content: space-between;
   }
+
+  .site-header .title {
+    padding-bottom: $nav-padding;
+  }
 }
