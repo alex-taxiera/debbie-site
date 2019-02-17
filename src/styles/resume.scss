@@ -1,8 +1,10 @@
 .resume-summary {
   width: 80%;
+  margin: auto;
+  padding: 1rem;
 }
 
-.details {
+.resume-summary .details {
   margin-left: 4em;
 }
 
@@ -16,13 +18,13 @@
   .resume-summary {
     width: 95%;
   }
-  .details {
+  .resume-summary .details {
     margin-left: 2em;
   }
 }
 
 @media (max-width: 500px) {
-  .details {
+  .resume-summary .details {
     margin: 0;
   }
 }
