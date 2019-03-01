@@ -46,7 +46,7 @@ Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   -webkit-box-shadow: $heavy-shadow;
 }
 
-%color-transition {
-  -webkit-transition: color 0.125s ease;
-  transition: color 0.125s ease;
+%hover-transition {
+  -webkit-transition: all 0.125s ease;
+  transition: all 0.125s ease;
 }

@@ -2,6 +2,10 @@
 
 @import 'variables';
 
+#fancy-text {
+  margin-bottom: $standard-margin
+}
+
 #fancy-text svg text {
   font-family: Tangerine;
 }
@@ -18,26 +22,66 @@
 }
 
 .box .padded {
-  @extend %clear-margin-padding;
   padding: 0 $double-standard-margin;
 }
 
 .plain-link {
-  @extend %color-transition;
+  @extend %hover-transition;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .plain-link.hover-decoration:hover,
 .plain-link.hover-decoration:active {
-  @extend %color-transition;
+  @extend %hover-transition;
   color: $red-wood;
+  fill: $red-wood;
+}
+
+.plain-link.hover-decoration:hover svg,
+.plain-link.hover-decoration:active svg {
+  @extend %hover-transition;
+  fill: $red-wood;
 }
 
 .left-inline-image {
   float: left;
   margin: $nav-padding;
   margin-left: 0;
+}
+
+form .double-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+form .double-input > div {
+  width: 45%;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.carousel-slide-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel.carousel-slider {
+  max-width: 100%;
+  margin: auto;
+}
+
+.carousel .slide {
+  background: transparent;
+}
+
+.carousel .slide iframe {
+  width: 100%;
+  margin: 0;
 }
 
 main {
@@ -54,8 +98,8 @@ main p.with-top {
 }
 
 footer {
-  margin-top: calc(#{$standard-margin} - 12px);
-  margin-bottom: calc(#{$standard-margin} - 12px);
+  text-align: center;
+  padding: calc(#{$standard-margin} - 12px) 0;
 }
 
 html {
@@ -164,7 +208,19 @@ select {
 [type="submit"],
 button,
 html [type="button"] {
+  cursor: pointer;
   -webkit-appearance: button;
+  border: none;
+}
+[type="reset"]:disabled
+[type="reset"].disabled,
+[type="submit"]:disabled,
+[type="submit"].disabled,
+button:disabled,
+button.disabled,
+html [type="button"]:disabled,
+html [type="button"].disabled {
+  cursor: not-allowed;
 }
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
@@ -455,7 +511,8 @@ pre tt:after {
   iframe,
   address,
   noscript,
-  fieldset {
+  fieldset,
+  #fancy-text {
     margin-bottom: $half-standard-margin;
   }
 
