@@ -1,0 +1,53 @@
+@import 'variables';
+
+.schools .header {
+  padding: 0 $double-standard-margin;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $double-standard-margin;
+}
+
+.schools .header > div {
+  width: 45%;
+}
+
+.schools .header .title h3 {
+  line-height: 2rem;
+}
+
+.schools .lessons {
+  margin: $standard-margin auto;
+}
+
+.schools .lessons .doc-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.schools .lessons .doc-links > a {
+  text-align: center;
+  width: 50%;
+  margin-bottom: $standard-margin;
+}
+
+.schools .lessons .doc-links svg {
+  width: 70px;
+}
+
+@media (max-width: 960px) {
+  .schools .header {
+    padding: unset;
+    display: unset;
+  }
+
+  .schools .header > div {
+    width: unset;
+  }
+
+  .schools .header .title {
+    margin: $standard-margin auto;
+    padding: 0 $standard-margin;
+  }
+}
