@@ -1,7 +1,11 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
 module.exports = {
   siteMetadata: {
     title: `Debbie Chen`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `I am Debbie Chen`,
     author: `Alex Taxiera`
   },
   plugins: [
@@ -20,6 +24,16 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`
+      }
+    },
+    {
+      resolve: 'gatsby-source-s3',
+      options: {
+        aws: {
+          accessKeyId: process.env.AWS_ACCESS_KEY,
+          secretAccessKey: process.env.AWS_SECRET
+        },
+        buckets: ['debbie-site']
       }
     },
     `gatsby-transformer-sharp`,
