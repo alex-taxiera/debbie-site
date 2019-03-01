@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 import PopUpModal from 'components/pop-up-modal'
-import MenuIcon from 'assets/menu.svg'
-import CloseIcon from 'assets/x.svg'
+import MenuIcon from 'icons/menu.svg'
+import CloseIcon from 'icons/x.svg'
 import 'styles/mobile-nav.scss'
 
 const MobileNav = ({

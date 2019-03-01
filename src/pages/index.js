@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import Layout from 'containers/layout'
-import Inspo from 'assets/inspo.svg'
+import Inspo from 'icons/inspo.svg'
 import 'graphql/images'
 
 const IndexPage = () => (
