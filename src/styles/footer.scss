@@ -1,0 +1,56 @@
+.contact-form-modal.ReactModal__Overlay--after-open {
+  background: rgba(216, 216, 216, 0.6);
+}
+
+.contact-form-modal.ReactModal__Overlay--before-close {
+  background: none;
+}
+
+.contact-form-modal.ReactModal__Content {
+  opacity: 0;
+}
+
+.contact-form-modal.ReactModal__Content:focus {
+  outline: none;
+}
+
+.contact-form-modal.ReactModal__Content--after-open {
+  opacity: 1;
+}
+
+.contact-form-modal.ReactModal__Content--before-close {
+  opacity: 0;
+}
+
+.contact-form-modal .content {
+  background: white;
+  width: 512px;
+  height: 665px;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: auto;
+  position: relative;
+}
+
+.contact-form-modal .close {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 36px;
+  width: 36px;
+  padding: 12px;
+}
+
+.contact-form-modal .close svg {
+  position: absolute;
+  stroke: black;
+  height: 12px;
+  width: 12px;
+}
+
+@media only screen and (max-width: 480px) {
+  .contact-form-modal .content {
+    height: 516px;
+  }
+}
