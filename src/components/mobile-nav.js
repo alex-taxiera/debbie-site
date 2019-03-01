@@ -29,12 +29,12 @@ const MobileNav = ({
         <div className="close-icon">
           <CloseIcon />
         </div>
-        <div className="mobile-nav-list">
+        <ul>
           {frontmatterEdges
             .map(({ node: { frontmatter } }) => frontmatter)
             .sort(({ navPosition: a }, { navPosition: b }) => a - b)
             .map(({ title, path }, key) => (
-              <div className="item" key={key}>
+              <li key={key}>
                 <Link
                   to={path}
                   className={'plain-link' + (currentPage === title ? ' active' : '')}
@@ -44,9 +44,9 @@ const MobileNav = ({
                     {title}
                   </div>
                 </Link>
-              </div>
+              </li>
             ))}
-        </div>
+        </ul>
       </PopUpModal>
     </div>
   )

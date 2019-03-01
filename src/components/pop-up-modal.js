@@ -14,6 +14,7 @@ const PopUpModal = ({
     isOpen={isOpen}
     onRequestClose={onRequestClose}
     className={className}
+    overlayClassName={className}
     style={{
       overlay: {
         background: null
