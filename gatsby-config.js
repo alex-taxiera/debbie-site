@@ -5,8 +5,9 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `Debbie Chen`,
-    description: `I am Debbie Chen`,
-    author: `Alex Taxiera`
+    description: `Debbie Chen - Bassoonist, Music Educator, Animal Lover`,
+    author: `Alex Taxiera`,
+    image: `src/images/favicon.png`
   },
   plugins: [
     `gatsby-plugin-sass`,
@@ -46,7 +47,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#E6CAA3`,
         theme_color: `#5F2B1B`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/images/favicon.png`
       }
     },

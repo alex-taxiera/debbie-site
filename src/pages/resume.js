@@ -13,7 +13,7 @@ const ResumePage = () => (
           <ul>
             <li>Bachelor of Music in Music Education - February 2019</li>
             <li>Bachelor of Music in Music Performance - February 2019</li>
-            <li>Overall GPA (Spring 2018): 3.6</li>
+            <li>Overall GPA (Spring 2019): 3.6</li>
           </ul>
         </div>
       </div>
@@ -23,7 +23,10 @@ const ResumePage = () => (
           <h4>Teaching</h4>
           <ul>
             <li>Private Bassoon lessons (2016 - present)</li>
-            <li>Private Oboe lessons (2018 - present)</li>
+            <li>Private Oboe lessons (2018)</li>
+            <li>Student Teacher, Pembroke High School, Pembroke, MA</li>
+            <li>Student Teacher, Early learning Childhood Center, Dedham, MA</li>
+            <li>Student Teacher, Riverdale Elementary, Dedham, MA</li>
           </ul>
           <h4>Collegiate Ambassador, MMEA All-State Conference, 03/2016, 03/2018</h4>
           <ul>

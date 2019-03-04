@@ -18,6 +18,10 @@ const SEO = ({ description, lang, meta, keywords, title }) => {
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
             meta={[
               {
+                property: 'og:site_name',
+                content: data.site.siteMetadata.title
+              },
+              {
                 name: 'description',
                 content: metaDescription
               },
@@ -28,6 +32,10 @@ const SEO = ({ description, lang, meta, keywords, title }) => {
               {
                 property: 'og:description',
                 content: metaDescription
+              },
+              {
+                property: 'og:image',
+                content: data.site.siteMetadata.image
               },
               {
                 property: 'og:type',

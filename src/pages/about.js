@@ -32,7 +32,7 @@ const AboutPage = ({ screenWidth }) => (
             <Img fixed={data.profile.data.src} />
           </div>
           <p>
-            Debbie Chen was born and raised in Brockton, Massachusetts. Chen studies music at the University of Massachusetts Amherst (UMass) where she is earning her Bachelor of Music degree in music education and bassoon performance. Chen will receive her teaching license in music grades Pre-k - 12 in February 2019.
+            Debbie Chen was born and raised in Brockton, Massachusetts. Chen studies music at the University of Massachusetts Amherst (UMass) where she is earning her Bachelor of Music degree in music education and bassoon performance.
           </p>
           <p>
             As a bassoonist, Chen has performed with the Wind Ensemble, Symphony Orchestra, Symphony Band, and the All-University Orchestra at UMass Amherst. She has also performed with the Pioneer Valley Symphony Orchestra, the Windham Orchestra, the Mt. Holyoke College Orchestra, the Boston Youth Symphony Orchestra (BYSO), and the Sharon Community Band. She has also performed solo recitals her junior and senior year of college. Chen’s former teachers include Remy Taghavi, Stephen Walt and Janet Underhill.
