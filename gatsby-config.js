@@ -59,6 +59,19 @@ module.exports = {
           include: /icons/
         }
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-135625097-1',
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        exclude: [],
+        // Any additional create only fields (optional)
+        sampleRate: 5,
+        siteSpeedSampleRate: 10
+      }
     }
   ]
 }
