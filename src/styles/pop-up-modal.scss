@@ -1,0 +1,26 @@
+.ReactModal__Content {
+  cursor: default;
+  transition: opacity 180ms ease-out;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.ReactModal__Content:focus {
+  outline: none;
+}
+
+.ReactModal__Overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  transition: background 180ms ease-out;
+  z-index: 20;
+  -webkit-tap-highlight-color: transparent;
+}

@@ -1,0 +1,52 @@
+@import 'variables';
+
+.site-header {
+  @extend %heavy-shadow;
+  background: $bassoon;
+  color: white;
+  margin-bottom: calc(#{$standard-margin} * 2);
+  position: -webkit-sticky;
+  position: sticky;
+  top: -57.44px; /* exact height of (.site-header .title) */
+  z-index: 10;
+}
+
+.site-header .page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-header .title {
+  padding: $nav-padding $standard-margin 0;
+}
+
+.site-header .title h1 {
+  margin: 0;
+}
+
+.site-header .mobile-button {
+  height: 25px;
+  width: 25px;
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    top: 0;
+    margin-bottom: 0;
+  }
+
+  .site-header .page-wrapper {
+    justify-content: space-between;
+  }
+
+  .site-header .title {
+    padding-bottom: $nav-padding;
+  }
+
+  .site-header .title h1 {
+    flex-grow: 1;
+    padding-left: $standard-margin;
+    text-align: center;
+  }
+}

@@ -3,5 +3,15 @@
     "browser": true
   },
   "extends": ["standard", "standard-react"],
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    "jsx-quotes": [2, "prefer-double"],
+    "arrow-parens": "error",
+    "no-lonely-if": "error",
+    "max-len": ["warn", {
+      "ignoreComments": true,
+      "ignoreRegExpLiterals": true,
+      "ignoreUrls": true
+    }]
+  }
 }

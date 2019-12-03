@@ -1,0 +1,14 @@
+@import 'variables';
+
+.nav-bar {
+  padding: $nav-padding 0;
+}
+
+.nav-bar .nav-item {
+  margin: 0 $standard-margin;
+}
+
+.nav-bar .plain-link.active {
+  font-weight: bold;
+  color: $nude;
+}

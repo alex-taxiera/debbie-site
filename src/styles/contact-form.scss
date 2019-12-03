@@ -1,0 +1,56 @@
+@import 'variables';
+
+$accent-color: $bassoon;
+$error-color: #FA1E3F;
+
+.contact-form {
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form .success-message {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.contact-form .form-error {
+  color: $error-color;
+  min-height: 1rem;
+  font-size: 0.8rem;
+}
+
+.contact-form .submit-btn {
+  background: $accent-color;
+  color: white;
+  width: 100px;
+  padding: 12px 0;
+  margin: 1.2rem auto 0;
+}
+
+.contact-form .shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

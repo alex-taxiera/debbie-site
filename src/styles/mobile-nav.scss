@@ -1,0 +1,67 @@
+@import 'variables';
+
+.mobile-nav .hamburger {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.mobile-nav-modal.ReactModal__Overlay--after-open {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.mobile-nav-modal.ReactModal__Overlay--before-close {
+  background: none;
+}
+
+.mobile-nav-modal.ReactModal__Content {
+  overflow-x: hidden;
+  opacity: 0;
+}
+
+.mobile-nav-modal.ReactModal__Content:focus {
+  outline: none;
+}
+
+.mobile-nav-modal.ReactModal__Content--after-open {
+  opacity: 1;
+}
+
+.mobile-nav-modal.ReactModal__Content--before-close {
+  opacity: 0;
+}
+
+.mobile-nav-modal .close-icon {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: $standard-margin;
+  right: $standard-margin;
+  pointer-events: none;
+}
+
+.mobile-nav-modal .close-icon svg {
+  position: absolute;
+  top: 0;
+}
+
+
+.mobile-nav-modal ul {
+  width: 100vw;
+  margin: 0;
+}
+
+.mobile-nav-modal ul li {
+  font-size: 2rem;
+  text-align: center;
+  color: #FFF;
+}
+
+.mobile-nav-modal ul .plain-link div {
+  padding: $half-standard-margin 0;
+}
+
+.mobile-nav-modal ul .plain-link.active {
+  font-weight: bold;
+  color: $nude;
+}
