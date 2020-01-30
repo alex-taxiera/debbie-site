@@ -5,6 +5,14 @@ on:
     branches:
       - master
 
+env:
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+  AWS_PROXY: ${{ secrets.AWS_PROXY }}
+  AWS_SECRET: ${{ secrets.AWS_SECRET }}
+  CAPTCHA_KEY: ${{ secrets.CAPTCHA_KEY }}
+  CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+  MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,10 +50,3 @@ jobs:
           BRANCH: gh-pages
           FOLDER: public
           CLEAN: true
-        env:
-          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_PROXY: ${{ secrets.AWS_PROXY }}
-          AWS_SECRET: ${{ secrets.AWS_SECRET }}
-          CAPTCHA_KEY: ${{ secrets.CAPTCHA_KEY }}
-          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
-          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
