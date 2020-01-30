@@ -1,4 +1,4 @@
-name: Publish
+name: Publish to gh-pages
 
 on:
   push:
@@ -9,11 +9,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: enriikke/gatsby-gh-pages-action@v2
+      -
+        name: Checkout
+        uses: actions/checkout@master
+      -
+        name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          access-token: ${{ secrets.PAT }}
-          deploy-branch: gh-pages
+          node-version: '12.x'
+      -
+        name: Node Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      -
+        name: Install
+        run: npm ci
+      -
+        name: Build
+        run: npm run build
+      -
+        name: Copy CNAME
+        run: cp ./CNAME ./public/CNAME
+      -
+        name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.PAT }}
+          BRANCH: gh-pages
+          FOLDER: public
+          CLEAN: true
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_PROXY: ${{ secrets.AWS_PROXY }}
